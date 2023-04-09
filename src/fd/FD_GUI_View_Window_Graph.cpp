@@ -17,6 +17,12 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y,int width, int h
     up_button->callback(FD_GUI_Manager::static_gui_cb_button_up, ui_pointer_for_callbacks);
     down_button->callback(FD_GUI_Manager::static_gui_cb_button_down, ui_pointer_for_callbacks);
     graph = std::make_unique<FD_GUI_View_Graph>(5,80,900,425,"");
+    df_v_slider = std::make_unique<Fl_Value_Slider>(910,250,120,25,"df Slider");
+    df_v_slider->type(FL_HOR_NICE_SLIDER); // Setze den Typ auf horizontalen Nice Slider
+    df_v_slider->range(1.0,10.0); // Setze den Wertebereich des Sliders
+    df_v_slider->step(1.0); // Schrittweite
+    df_v_slider->value(5.0); // Startwert
+    //df_v_slider->callback(slider_callback);
     this->end();
 }
 

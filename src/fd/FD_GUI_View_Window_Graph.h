@@ -7,6 +7,7 @@
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Box.H>
+#include <Fl/Fl_Value_Slider.H>
 #include <FL/Fl_Value_Output.H>
 #include "FD_GUI_View_Graph.h"
 
@@ -26,5 +27,6 @@ class FD_GUI_View_Window_Graph : public Fl_Window {
         std::unique_ptr<Fl_Value_Output> output_degrees_of_freedom;
         std::unique_ptr<Fl_Button> up_button;
         std::unique_ptr<Fl_Button> down_button;
+        std::unique_ptr<Fl_Value_Slider> df_v_slider;
 };
 #endif /* FD_GUI_VIEW_WINDOW_GRAPH_H */

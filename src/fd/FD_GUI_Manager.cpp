@@ -43,6 +43,11 @@ void FD_GUI_Manager::gui_cb_button_down(Fl_Widget* w){
     graph_creation_controller->control_graph_creation();
 }
 
+void FD_GUI_Manager::gui_df_slider(Fl_Widget* w){
+    graph_creation_controller->control_graph_creation();
+    // todo Vllt fehlt hier noch was
+    // evtl überprüfen ob slider Input korrekt ist
+}
 
 void FD_GUI_Manager::static_gui_cb_button_up(Fl_Widget* w, void *f){
     ((FD_GUI_Manager *)f)->gui_cb_button_up(w);
@@ -52,3 +57,6 @@ void FD_GUI_Manager::static_gui_cb_button_down(Fl_Widget* w, void *f){
     ((FD_GUI_Manager *)f)->gui_cb_button_down(w);
 }
 
+void FD_GUI_Manager::static_gui_df_slider(Fl_Widget*w, void* f){
+    ((FD_GUI_Manager *)f)->gui_df_slider(w);
+}
