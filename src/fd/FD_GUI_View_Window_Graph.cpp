@@ -13,25 +13,38 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     output_degrees_of_freedom = std::make_unique<Fl_Value_Output>(970, 180, 60, 40);
     output_degrees_of_freedom->label("df");
     output_degrees_of_freedom->value(5); // Startwert
+
+    //DF Buttons //!noch löschen
     up_button = std::make_unique<Fl_Button>(910, 80, 120, 40, "Increase df");
     down_button = std::make_unique<Fl_Button>(910, 130, 120, 40, "Decrease df");
     up_button->callback(FD_GUI_Manager::static_gui_cb_button_up, ui_pointer_for_callbacks);
     down_button->callback(FD_GUI_Manager::static_gui_cb_button_down, ui_pointer_for_callbacks);
-    graph = std::make_unique<FD_GUI_View_Graph>(5, 80, 900, 425, "");
-    df_v_slider = std::make_unique<Fl_Value_Slider>(910, 250, 120, 25, "df Slider");
+    
+    //Degree of Freedom Slider
+    df_v_slider = std::make_unique<Fl_Value_Slider>(910, 250, 120, 25, "Degrees of Freedom");
     df_v_slider->type(FL_HOR_NICE_SLIDER); // Slider Typ
     df_v_slider->range(1.0, 10.0);         // Wertebereich des Sliders
     df_v_slider->step(1.0);                // Schrittweite
     df_v_slider->value(5.0);               // Startwert
     df_v_slider->callback(FD_GUI_Manager::static_gui_cb_df_slider_callback, ui_pointer_for_callbacks);
+    
+    //Effect Slider
+    e_v_slider = std::make_unique<Fl_Value_Slider>(910, 350, 120, 25, "Effect size");
+    e_v_slider->type(FL_HOR_NICE_SLIDER); // Slider Typ
+    e_v_slider->range(0, 100.0);         // Wertebereich des Sliders
+    e_v_slider->step(0.1);                // Schrittweite
+    e_v_slider->value(50.0);               // Startwert
+    //e_v_slider->callback(FD_GUI_Manager::static_gui_cb_e_slider_callback, ui_pointer_for_callbacks);
+    
+    graph = std::make_unique<FD_GUI_View_Graph>(5, 80, 900, 425, "");
     this->end();
 }
-
+/* //! Brauch ich evtl nicht mehr
 double FD_GUI_View_Window_Graph::get_df_slider_value()
 {
     double slider_value = static_cast<double>(df_v_slider->value());
     return slider_value;
-}
+}*/
 
 void FD_GUI_View_Window_Graph::set_df_value(int df)
 {

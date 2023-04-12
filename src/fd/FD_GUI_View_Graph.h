@@ -10,6 +10,7 @@ class FD_GUI_View_Graph : public Fl_Widget {
         void set_point_list(const std::vector<std::pair<double,double>>& pl);
     private:
         std::vector<std::pair<double,double>> point_list{};
+        double effect{100};
 };
 
 #endif /* FD_GUI_VIEW_GRAPH_H */

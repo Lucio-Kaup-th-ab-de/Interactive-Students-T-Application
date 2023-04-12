@@ -31,5 +31,6 @@ private:
     std::unique_ptr<Fl_Button> up_button;
     std::unique_ptr<Fl_Button> down_button;
     std::unique_ptr<Fl_Value_Slider> df_v_slider;
+    std::unique_ptr<Fl_Value_Slider> e_v_slider;
 };
 #endif /* FD_GUI_VIEW_WINDOW_GRAPH_H */
