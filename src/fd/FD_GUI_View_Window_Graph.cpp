@@ -10,18 +10,20 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     graph_label = std::make_unique<Fl_Box>(5, 35, 900, 40, "Student's t probability density function");
     graph_label->labelfont(FL_BOLD);
     graph_label->labelsize(20);
-    output_degrees_of_freedom = std::make_unique<Fl_Value_Output>(970, 180, 60, 40);
+
+    //DF Output
+    output_degrees_of_freedom = std::make_unique<Fl_Value_Output>(300, 530, 60, 40);
     output_degrees_of_freedom->label("df");
     output_degrees_of_freedom->value(5); // Startwert
 
     //DF Buttons //!noch löschen
-    up_button = std::make_unique<Fl_Button>(910, 80, 120, 40, "Increase df");
-    down_button = std::make_unique<Fl_Button>(910, 130, 120, 40, "Decrease df");
-    up_button->callback(FD_GUI_Manager::static_gui_cb_button_up, ui_pointer_for_callbacks);
-    down_button->callback(FD_GUI_Manager::static_gui_cb_button_down, ui_pointer_for_callbacks);
+    //up_button = std::make_unique<Fl_Button>(20, 525, 120, 40, "Increase df");
+    //down_button = std::make_unique<Fl_Button>(910, 130, 120, 40, "Decrease df");
+    //up_button->callback(FD_GUI_Manager::static_gui_cb_button_up, ui_pointer_for_callbacks);
+    //down_button->callback(FD_GUI_Manager::static_gui_cb_button_down, ui_pointer_for_callbacks);
     
     //Degree of Freedom Slider
-    df_v_slider = std::make_unique<Fl_Value_Slider>(910, 250, 120, 25, "Degrees of Freedom");
+    df_v_slider = std::make_unique<Fl_Value_Slider>(20, 530, 120, 25, "Degrees of Freedom");
     df_v_slider->type(FL_HOR_NICE_SLIDER); // Slider Typ
     df_v_slider->range(1.0, 10.0);         // Wertebereich des Sliders
     df_v_slider->step(1.0);                // Schrittweite
@@ -29,7 +31,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     df_v_slider->callback(FD_GUI_Manager::static_gui_cb_df_slider_callback, ui_pointer_for_callbacks);
     
     //Effect Slider
-    e_v_slider = std::make_unique<Fl_Value_Slider>(910, 350, 120, 25, "Effect size");
+    e_v_slider = std::make_unique<Fl_Value_Slider>(150, 530, 120, 25, "Effect size");
     e_v_slider->type(FL_HOR_NICE_SLIDER); // Slider Typ
     e_v_slider->range(0, 100.0);         // Wertebereich des Sliders
     e_v_slider->step(0.1);                // Schrittweite

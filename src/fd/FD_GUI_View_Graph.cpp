@@ -24,13 +24,13 @@ void FD_GUI_View_Graph::draw(){
     const int y_graph_draw_size = y_max_graph_draw_pos - y_min_graph_draw_pos;
     //draw graph background area
     fl_color(FL_WHITE);
-    fl_rectf(x(), y(), w(), h());
+    fl_rectf(x(), y(), w() + 290, h());
     //draw axes
     fl_color(FL_BLACK);
     // graph y axis
     fl_line(x_min_graph_draw_pos, y_min_graph_draw_pos, x_min_graph_draw_pos, y_max_graph_draw_pos);
     // graph x axis
-    fl_line(x_min_graph_draw_pos, y_max_graph_draw_pos, x_max_graph_draw_pos, y_max_graph_draw_pos);
+    fl_line(x_min_graph_draw_pos, y_max_graph_draw_pos, x_max_graph_draw_pos + effect, y_max_graph_draw_pos);
     const double x_axis_min_value{-5.0};
     const double x_axis_max_value{5.0};
     const double y_axis_min_value{0.0};

@@ -2,7 +2,7 @@
 
 FD_GUI_Manager::FD_GUI_Manager()
 {
-    view_window_graph = std::make_unique<FD_GUI_View_Window_Graph>(275, 40, 1035, 520, "Distribution Graph Application", (void *)this); //* Main Window
+    view_window_graph = std::make_unique<FD_GUI_View_Window_Graph>(275, 40, 1200, 600, "Distribution Graph Application", (void *)this); //* Main Window
     view_window_graph->show();
 }
 
