@@ -15,7 +15,7 @@ class FD_GUI_View_Window_Graph : public Fl_Window
 {
 public:
     FD_GUI_View_Window_Graph(int x, int y, int width, int height, const char *title, void *ui_pointer_for_callbacks);
-    void update_graph(const std::vector<std::pair<double, double>> &point_list);
+    void update_graph(const std::vector<std::pair<double, double>> &point_list, double a_border);
     double get_df_slider_value();
     void set_df_value(int df);
     int get_df_value();
@@ -32,5 +32,6 @@ private:
     std::unique_ptr<Fl_Button> down_button;
     std::unique_ptr<Fl_Value_Slider> df_v_slider;
     std::unique_ptr<Fl_Value_Slider> e_v_slider;
+    std::unique_ptr<Fl_Value_Slider> a_v_slider;
 };
 #endif /* FD_GUI_VIEW_WINDOW_GRAPH_H */

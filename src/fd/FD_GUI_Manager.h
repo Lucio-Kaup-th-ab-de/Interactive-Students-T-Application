@@ -14,7 +14,7 @@ class FD_GUI_Manager : public IA_GUI_Manager_I
 public:
     FD_GUI_Manager();
     void run() override;
-    void update_view_graph_diagram(const std::vector<std::pair<double, double>> &point_list) override;
+    void update_view_graph_diagram(const std::vector<std::pair<double, double>> &point_list, double a_border) override;
     int get_df_value() override;
     void set_graph_creation_controller(IA_Graph_Creation_Controller_GUI *gc_c);
 

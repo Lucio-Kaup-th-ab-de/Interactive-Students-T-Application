@@ -21,9 +21,9 @@ int FD_GUI_Manager::get_df_value()
     return view_window_graph->get_df_value();
 }
 
-void FD_GUI_Manager::update_view_graph_diagram(const std::vector<std::pair<double, double>> &point_list)
+void FD_GUI_Manager::update_view_graph_diagram(const std::vector<std::pair<double, double>> &point_list, double a_border)
 {
-    view_window_graph->update_graph(point_list);
+    view_window_graph->update_graph(point_list, a_border);
 }
 
 void FD_GUI_Manager::gui_cb_button_up(Fl_Widget *w)
