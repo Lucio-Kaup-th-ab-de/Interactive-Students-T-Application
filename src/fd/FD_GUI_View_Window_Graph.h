@@ -7,6 +7,7 @@
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Box.H>
+#include <FL/Fl_PNG_Image.H>
 #include <Fl/Fl_Value_Slider.H>
 #include <FL/Fl_Value_Output.H>
 #include "FD_GUI_View_Graph.h"

@@ -5,6 +5,7 @@
 #include <string>
 #include <FL/Fl.H>
 #include <FL/Fl.H>
+#include <FL/Fl_PNG_Image.H>
 #include "FD_GUI_View_Window_Graph.h"
 #include "IA_GUI_Manager_I.h"
 #include "IA_Graph_Creation_Controller_GUI.h"
