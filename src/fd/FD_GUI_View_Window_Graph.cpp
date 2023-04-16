@@ -7,7 +7,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     : Fl_Window(x, y, width, height, title)
 {
     this->begin();
-    graph_label = std::make_unique<Fl_Box>(5, 35, 900, 40, "Student's t probability density function");
+    graph_label = std::make_unique<Fl_Box>(150, 35, 900, 40, "Student's t probability density function");
     graph_label->labelfont(FL_BOLD);
     graph_label->labelsize(20);
 
@@ -91,11 +91,47 @@ void FD_GUI_View_Window_Graph::set_df_value(int df)
     output_degrees_of_freedom->value(df);
 }
 
+void FD_GUI_View_Window_Graph::set_mean_2(double m_2)
+{
+    output_mean_2->value(m_2);
+}
+
+void FD_GUI_View_Window_Graph::set_beta(double b)
+{
+    output_beta->value(b);
+}
+
+void FD_GUI_View_Window_Graph::set_power(double p)
+{
+    output_power->value(p);
+}
+
 int FD_GUI_View_Window_Graph::get_df_value()
 {
     return output_degrees_of_freedom->value();
 }
 
+double FD_GUI_View_Window_Graph::get_mean_2()
+{
+    return output_mean_2->value();
+}
+
+double FD_GUI_View_Window_Graph::get_beta()
+{
+    return output_beta->value();
+}
+
+double FD_GUI_View_Window_Graph::get_power()
+{
+    return output_power->value();
+}
+
+int FD_GUI_View_Window_Graph::get_df_value()
+{
+    return output_degrees_of_freedom->value();
+}
+
+/*
 void FD_GUI_View_Window_Graph::enable_up_button()
 {
     up_button->activate();
@@ -114,7 +150,7 @@ void FD_GUI_View_Window_Graph::enable_down_button()
 void FD_GUI_View_Window_Graph::disable_down_button()
 {
     down_button->deactivate();
-}
+}*/
 
 void FD_GUI_View_Window_Graph::update_graph(const std::vector<std::pair<double, double>> &point_list, double a_border)
 {

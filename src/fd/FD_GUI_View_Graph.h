@@ -12,6 +12,7 @@ public:
 
 private:
     std::vector<std::pair<double, double>> point_list{};
+    double a_border{5};
     double effect{100};
     double alpha{5};
 };

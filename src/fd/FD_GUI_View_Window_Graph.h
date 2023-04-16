@@ -17,13 +17,25 @@ class FD_GUI_View_Window_Graph : public Fl_Window
 public:
     FD_GUI_View_Window_Graph(int x, int y, int width, int height, const char *title, void *ui_pointer_for_callbacks);
     void update_graph(const std::vector<std::pair<double, double>> &point_list, double a_border);
-    double get_df_slider_value();
+
+    // slider
     void set_df_value(int df);
+    double get_df_slider_value();
+
+    void set_mean_2(double m_2);
+    void set_beta(double b);
+    void set_power(double p);
+
     int get_df_value();
-    void enable_up_button();
-    void disable_up_button();
-    void enable_down_button();
-    void disable_down_button();
+    double get_mean_2();
+    double get_beta();
+    double get_power();
+
+    //! Noch löschen
+    // void enable_up_button();
+    // void disable_up_button();
+    // void enable_down_button();
+    // void disable_down_button();
 
 private:
     std::unique_ptr<FD_GUI_View_Graph> graph;
@@ -31,8 +43,8 @@ private:
     std::unique_ptr<Fl_Value_Output> output_degrees_of_freedom;
     std::unique_ptr<Fl_Value_Output> output_mean_1;
     std::unique_ptr<Fl_Value_Output> output_mean_2;
-    std::unique_ptr<Fl_Value_Output> output_power;
     std::unique_ptr<Fl_Value_Output> output_beta;
+    std::unique_ptr<Fl_Value_Output> output_power;
     std::unique_ptr<Fl_Button> up_button;
     std::unique_ptr<Fl_Button> down_button;
     std::unique_ptr<Fl_Value_Slider> df_v_slider;
