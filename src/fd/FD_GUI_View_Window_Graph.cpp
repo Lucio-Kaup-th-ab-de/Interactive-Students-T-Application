@@ -126,12 +126,6 @@ double FD_GUI_View_Window_Graph::get_power()
     return output_power->value();
 }
 
-int FD_GUI_View_Window_Graph::get_df_value()
-{
-    return output_degrees_of_freedom->value();
-}
-
-/*
 void FD_GUI_View_Window_Graph::enable_up_button()
 {
     up_button->activate();
@@ -150,7 +144,7 @@ void FD_GUI_View_Window_Graph::enable_down_button()
 void FD_GUI_View_Window_Graph::disable_down_button()
 {
     down_button->deactivate();
-}*/
+}
 
 void FD_GUI_View_Window_Graph::update_graph(const std::vector<std::pair<double, double>> &point_list, double a_border)
 {

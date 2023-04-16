@@ -32,10 +32,10 @@ public:
     double get_power();
 
     //! Noch löschen
-    // void enable_up_button();
-    // void disable_up_button();
-    // void enable_down_button();
-    // void disable_down_button();
+    void enable_up_button();
+    void disable_up_button();
+    void enable_down_button();
+    void disable_down_button();
 
 private:
     std::unique_ptr<FD_GUI_View_Graph> graph;
