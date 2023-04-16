@@ -3,8 +3,8 @@
 FD_GUI_Manager::FD_GUI_Manager()
 {
     view_window_graph = std::make_unique<FD_GUI_View_Window_Graph>(275, 40, 1200, 600, "Distribution Graph Application", (void *)this); //* Main Window
-    Fl_PNG_Image app_icon("resources/icon.png");
-    view_window_graph->icon(&app_icon);
+    // Fl_PNG_Image app_icon("resources/icon.png");
+    // view_window_graph->icon(&app_icon);
     view_window_graph->show();
 }
 

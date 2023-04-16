@@ -7,7 +7,7 @@
 #include <FL/Fl_Window.H>
 #include <FL/Fl_Button.H>
 #include <FL/Fl_Box.H>
-#include <FL/Fl_PNG_Image.H>
+// #include <FL/Fl_PNG_Image.H>
 #include <Fl/Fl_Value_Slider.H>
 #include <FL/Fl_Value_Output.H>
 #include "FD_GUI_View_Graph.h"
@@ -29,6 +29,10 @@ private:
     std::unique_ptr<FD_GUI_View_Graph> graph;
     std::unique_ptr<Fl_Box> graph_label;
     std::unique_ptr<Fl_Value_Output> output_degrees_of_freedom;
+    std::unique_ptr<Fl_Value_Output> output_mean_1;
+    std::unique_ptr<Fl_Value_Output> output_mean_2;
+    std::unique_ptr<Fl_Value_Output> output_power;
+    std::unique_ptr<Fl_Value_Output> output_beta;
     std::unique_ptr<Fl_Button> up_button;
     std::unique_ptr<Fl_Button> down_button;
     std::unique_ptr<Fl_Value_Slider> df_v_slider;
