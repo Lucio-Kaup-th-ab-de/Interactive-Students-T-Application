@@ -31,12 +31,6 @@ public:
     double get_beta();
     double get_power();
 
-    //! Noch löschen
-    void enable_up_button();
-    void disable_up_button();
-    void enable_down_button();
-    void disable_down_button();
-
 private:
     std::unique_ptr<FD_GUI_View_Graph> graph;
     std::unique_ptr<Fl_Box> graph_label;
@@ -45,8 +39,8 @@ private:
     std::unique_ptr<Fl_Value_Output> output_mean_2;
     std::unique_ptr<Fl_Value_Output> output_beta;
     std::unique_ptr<Fl_Value_Output> output_power;
-    std::unique_ptr<Fl_Button> up_button;
-    std::unique_ptr<Fl_Button> down_button;
+    //std::unique_ptr<Fl_Button> up_button;
+    //std::unique_ptr<Fl_Button> down_button;
     std::unique_ptr<Fl_Value_Slider> df_v_slider;
     std::unique_ptr<Fl_Value_Slider> e_v_slider;
     std::unique_ptr<Fl_Value_Slider> a_v_slider;

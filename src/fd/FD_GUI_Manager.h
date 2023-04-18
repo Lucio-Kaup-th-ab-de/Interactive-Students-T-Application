@@ -19,8 +19,6 @@ public:
     int get_df_value() override;
     void set_graph_creation_controller(IA_Graph_Creation_Controller_GUI *gc_c);
 
-    static void static_gui_cb_button_up(Fl_Widget *w, void *f);
-    static void static_gui_cb_button_down(Fl_Widget *w, void *f);
     static void static_gui_cb_df_slider_callback(Fl_Widget *w, void *f);
 
 private:
@@ -28,8 +26,6 @@ private:
     IA_Graph_Creation_Controller_GUI *graph_creation_controller;
     const int df_min_value{1};
     const int df_max_value{10};
-    void gui_cb_button_up(Fl_Widget *w);
-    void gui_cb_button_down(Fl_Widget *w);
     void gui_cb_df_slider_callback(Fl_Widget *w);
 };
 #endif /* GUI_MANAGER_H */

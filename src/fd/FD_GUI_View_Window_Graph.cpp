@@ -46,12 +46,6 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     // output_power->textcolor(fl_rgb_color(0, 0, 255));
     output_power->value(0);
 
-    // DF Buttons //!noch löschen
-    // up_button = std::make_unique<Fl_Button>(20, 525, 120, 40, "Increase df");
-    // down_button = std::make_unique<Fl_Button>(910, 130, 120, 40, "Decrease df");
-    // up_button->callback(FD_GUI_Manager::static_gui_cb_button_up, ui_pointer_for_callbacks);
-    // down_button->callback(FD_GUI_Manager::static_gui_cb_button_down, ui_pointer_for_callbacks);
-
     // Degree of Freedom Slider
     df_v_slider = std::make_unique<Fl_Value_Slider>(20, 530, 120, 25, "Degrees of Freedom");
     df_v_slider->type(FL_HOR_NICE_SLIDER); // Slider Typ
@@ -124,26 +118,6 @@ double FD_GUI_View_Window_Graph::get_beta()
 double FD_GUI_View_Window_Graph::get_power()
 {
     return output_power->value();
-}
-
-void FD_GUI_View_Window_Graph::enable_up_button()
-{
-    up_button->activate();
-}
-
-void FD_GUI_View_Window_Graph::disable_up_button()
-{
-    up_button->deactivate();
-}
-
-void FD_GUI_View_Window_Graph::enable_down_button()
-{
-    down_button->activate();
-}
-
-void FD_GUI_View_Window_Graph::disable_down_button()
-{
-    down_button->deactivate();
 }
 
 void FD_GUI_View_Window_Graph::update_graph(const std::vector<std::pair<double, double>> &point_list, double a_border)
