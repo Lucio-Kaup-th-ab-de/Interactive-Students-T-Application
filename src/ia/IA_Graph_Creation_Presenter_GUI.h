@@ -10,7 +10,7 @@ class IA_Graph_Creation_Presenter_GUI : public AR_UCI_Graph_Creation_OB
 {
 public:
     IA_Graph_Creation_Presenter_GUI(IA_GUI_Manager_I &gui);
-    void present_graph(const std::vector<std::pair<double, double>> &point_lis, double a_border);
+    void present_graph(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border);
 
 private:
     IA_GUI_Manager_I &gui_manager;

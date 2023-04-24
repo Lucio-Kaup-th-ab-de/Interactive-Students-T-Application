@@ -16,7 +16,7 @@ class FD_GUI_View_Window_Graph : public Fl_Window
 {
 public:
     FD_GUI_View_Window_Graph(int x, int y, int width, int height, const char *title, void *ui_pointer_for_callbacks);
-    void update_graph(const std::vector<std::pair<double, double>> &point_list, double a_border);
+    void update_graph(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border);
 
     // slider
     void set_df_value(int df);
@@ -39,8 +39,8 @@ private:
     std::unique_ptr<Fl_Value_Output> output_mean_2;
     std::unique_ptr<Fl_Value_Output> output_beta;
     std::unique_ptr<Fl_Value_Output> output_power;
-    //std::unique_ptr<Fl_Button> up_button;
-    //std::unique_ptr<Fl_Button> down_button;
+    // std::unique_ptr<Fl_Button> up_button;
+    // std::unique_ptr<Fl_Button> down_button;
     std::unique_ptr<Fl_Value_Slider> df_v_slider;
     std::unique_ptr<Fl_Value_Slider> e_v_slider;
     std::unique_ptr<Fl_Value_Slider> a_v_slider;

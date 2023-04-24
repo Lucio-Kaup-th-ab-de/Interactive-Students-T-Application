@@ -120,7 +120,7 @@ double FD_GUI_View_Window_Graph::get_power()
     return output_power->value();
 }
 
-void FD_GUI_View_Window_Graph::update_graph(const std::vector<std::pair<double, double>> &point_list, double a_border)
+void FD_GUI_View_Window_Graph::update_graph(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border)
 {
-    graph->set_point_list(point_list, a_border);
+    graph->set_point_list(point_list, a_border, c_border);
 };

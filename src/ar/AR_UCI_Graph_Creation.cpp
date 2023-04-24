@@ -11,13 +11,9 @@ void AR_UCI_Graph_Creation::create_graph(int df, double alpha)
   double y{0};
   for (double x = -5.0; x <= 5.0; x = x + 0.1)
   {
-    y = stat_util.students_t_pdf(x, df);
-    if (y == stat_util.students_t_cdf(alpha, df))
-    {
-      point_list.push_back(std::pair<double, double>{x, -1});
-    }
-    else
-      point_list.push_back(std::pair<double, double>{x, y});
+    point_list.push_back(std::pair<double, double>{x, stat_util.students_t_pdf(x, df)});
   }
-  graph_presenter.present_graph(point_list, a_border);
+  a_border = std::round(stat_util.students_t_cdf(alpha, df) * 10.0) / 10.0;
+  c_border = std::round(stat_util.students_t_cdf(1 - alpha, df) * 10.0) / 10.0;
+  graph_presenter.present_graph(point_list, a_border, c_border);
 };

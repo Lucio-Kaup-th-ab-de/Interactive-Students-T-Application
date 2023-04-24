@@ -8,9 +8,11 @@ FD_GUI_View_Graph::FD_GUI_View_Graph(int x, int y, int width, int height, const 
 {
 }
 
-void FD_GUI_View_Graph::set_point_list(const std::vector<std::pair<double, double>> &pl, double a_border)
+void FD_GUI_View_Graph::set_point_list(const std::vector<std::pair<double, double>> &pl, double a_b, double c_b)
 {
     point_list = pl;
+    a_border = a_b;
+    c_border = c_b;
     redraw();
 }
 
@@ -41,33 +43,23 @@ void FD_GUI_View_Graph::draw()
     const double x_axis_value_interval{x_axis_max_value - x_axis_min_value};
     const double y_axis_value_interval{y_axis_max_value - y_axis_min_value};
 
-    // Verteilung eins
+    // *Verteilung eins
 
     if ((point_list.size() > 0) && ((point_list.size() % 2) == 1))
     {
 
         for (size_t i = 0; i < (point_list.size() - 1); i++)
         {
-            // fl_color(150, 150, 150);
-            // fl_line(50, y_axis_min_value, 50, y_axis_max_value);
-            if (point_list.at(i).second == -1)
-            { //! Funktioniert noch nicht
-                fl_color(150, 150, 150);
-                fl_line(point_list.at(i).first, y_axis_min_value, point_list.at(i).first, y_axis_max_value);
-            }
-            else
-            {
-                fl_color(255, 0, 0);
-                int x_start = x_min_graph_draw_pos + std::round(x_graph_draw_size * ((point_list.at(i).first - x_axis_min_value) / x_axis_value_interval));
-                int x_end = x_min_graph_draw_pos + std::round(x_graph_draw_size * ((point_list.at(i + 1).first - x_axis_min_value) / x_axis_value_interval));
-                int y_start = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((point_list.at(i).second - y_axis_min_value) / y_axis_value_interval));
-                int y_end = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((point_list.at(i + 1).second - y_axis_min_value) / y_axis_value_interval));
-                fl_line(x_start, y_start, x_end, y_end);
-            }
+            fl_color(255, 0, 0);
+            int x_start = x_min_graph_draw_pos + std::round(x_graph_draw_size * ((point_list.at(i).first - x_axis_min_value) / x_axis_value_interval));
+            int x_end = x_min_graph_draw_pos + std::round(x_graph_draw_size * ((point_list.at(i + 1).first - x_axis_min_value) / x_axis_value_interval));
+            int y_start = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((point_list.at(i).second - y_axis_min_value) / y_axis_value_interval));
+            int y_end = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((point_list.at(i + 1).second - y_axis_min_value) / y_axis_value_interval));
+            fl_line(x_start, y_start, x_end, y_end);
         }
     }
 
-    // Verteilung zwei
+    // *Verteilung zwei
     fl_color(0, 0, 255);
     if ((point_list.size() > 0) && ((point_list.size() % 2) == 1))
     {
@@ -81,9 +73,11 @@ void FD_GUI_View_Graph::draw()
         }
     }
 
+    // *Fehlergrenzen
+    fl_color(180, 180, 180);
     // a Grenze
-    fl_color(150, 150, 150);
-    // fl_line(50, y_axis_min_value, 50, y_axis_max_value);
-    // fl_yxline()
+    fl_yxline(250, y_min_graph_draw_pos, y_max_graph_draw_pos);
     //  c Grenze
+
+    fl_yxline(c_border, y_min_graph_draw_pos, y_max_graph_draw_pos);
 }
