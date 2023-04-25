@@ -6,7 +6,7 @@
 #include <iostream>
 
 FD_GUI_View_Graph::FD_GUI_View_Graph(int x, int y, int width, int height, const char *label)
-    : Fl_Widget(x, y, width, height, label)
+    : Fl_Widget(x, y, width, height, label), first_draw(true)
 {
 }
 
@@ -46,21 +46,27 @@ void FD_GUI_View_Graph::draw()
     const double y_axis_max_value{0.4};
     const double x_axis_value_interval{x_axis_max_value - x_axis_min_value};
     const double y_axis_value_interval{y_axis_max_value - y_axis_min_value};
+
     // draw Scale
-    const double scale_interval{0.5};
-    const int scale_fontsize = 12;
-    fl_font(FL_HELVETICA, scale_fontsize);
-    // x-Scale
-    for (double value = x_axis_min_value; value <= x_axis_max_value; value += scale_interval)
+    if (first_draw) // Zeichnet die Skala nur beim ersten Zeichnen
     {
-        double x_position = x_min_graph_draw_pos + ((value - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval;
-        fl_line(x_position, y_max_graph_draw_pos - 5, x_position, y_max_graph_draw_pos + 5);
-        std::stringstream ss;
-        ss << std::fixed << std::setprecision(1) << value;
-        std::string value_str = ss.str();
-        fl_draw(value_str.c_str(), x_position - 5, y_max_graph_draw_pos + scale_fontsize + 5);
+        const double scale_interval{0.5};
+        const int scale_fontsize = 12;
+        fl_font(FL_HELVETICA, scale_fontsize);
+        // x-Scale
+        for (double value = x_axis_min_value; value <= x_axis_max_value; value += scale_interval)
+        {
+            double x_position = x_min_graph_draw_pos + ((value - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval;
+            fl_line(x_position, y_max_graph_draw_pos - 5, x_position, y_max_graph_draw_pos + 5);
+            std::stringstream ss;
+            ss << std::fixed << std::setprecision(1) << value;
+            std::string value_str = ss.str();
+            fl_draw(value_str.c_str(), x_position - 5, y_max_graph_draw_pos + scale_fontsize + 5);
+        }
+        // y-Scale
+
+        first_draw = false;
     }
-    // y-Scale
 
     // *Verteilung eins
 

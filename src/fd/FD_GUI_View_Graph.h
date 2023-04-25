@@ -16,6 +16,7 @@ private:
     double c_border{10};
     double effect{200}; //? Hier übergebener Parameter hat keinen Einfluss
     double alpha{5};
+    bool first_draw;
 };
 
 #endif /* FD_GUI_VIEW_GRAPH_H */
