@@ -1,5 +1,7 @@
 #include <vector>
 #include <cmath>
+#include <sstream>
+#include <iomanip>
 #include "FD_GUI_View_Graph.h"
 #include <iostream>
 
@@ -23,7 +25,7 @@ void FD_GUI_View_Graph::draw()
     const int x_left = x(), y_up = y();
     const int x_right = x() + w() - 1, y_down = y() + h() - 1;
     const int x_min_graph_draw_pos = x_left + axis_space;
-    const int x_max_graph_draw_pos = x_right - axis_space + effect;
+    int x_max_graph_draw_pos = x_right - axis_space + effect;
     const int y_min_graph_draw_pos = y_up + axis_space;
     const int y_max_graph_draw_pos = y_down - axis_space;
     const int x_graph_draw_size = x_max_graph_draw_pos - x_min_graph_draw_pos;
@@ -31,7 +33,8 @@ void FD_GUI_View_Graph::draw()
     // draw graph background area
     fl_color(FL_WHITE);
     fl_rectf(x(), y(), w() + 290, h());
-    // draw axes
+
+    // *draw axes
     fl_color(FL_BLACK);
     // graph y axis
     fl_line(x_min_graph_draw_pos, y_min_graph_draw_pos, x_min_graph_draw_pos, y_max_graph_draw_pos);
@@ -43,6 +46,21 @@ void FD_GUI_View_Graph::draw()
     const double y_axis_max_value{0.4};
     const double x_axis_value_interval{x_axis_max_value - x_axis_min_value};
     const double y_axis_value_interval{y_axis_max_value - y_axis_min_value};
+    // draw Scale
+    const double scale_interval{0.5};
+    const int scale_fontsize = 12;
+    fl_font(FL_HELVETICA, scale_fontsize);
+    // x-Scale
+    for (double value = x_axis_min_value; value <= x_axis_max_value; value += scale_interval)
+    {
+        double x_position = x_min_graph_draw_pos + ((value - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval;
+        fl_line(x_position, y_max_graph_draw_pos - 5, x_position, y_max_graph_draw_pos + 5);
+        std::stringstream ss;
+        ss << std::fixed << std::setprecision(1) << value;
+        std::string value_str = ss.str();
+        fl_draw(value_str.c_str(), x_position - 5, y_max_graph_draw_pos + scale_fontsize + 5);
+    }
+    // y-Scale
 
     // *Verteilung eins
 
@@ -80,7 +98,4 @@ void FD_GUI_View_Graph::draw()
     fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * (a_border - x_axis_min_value) / x_axis_value_interval), y_min_graph_draw_pos, y_max_graph_draw_pos);
     //  c Grenze
     fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * (c_border - x_axis_min_value) / x_axis_value_interval), y_min_graph_draw_pos, y_max_graph_draw_pos);
-
-    // * Achsenbeschriftung:
-
 }
