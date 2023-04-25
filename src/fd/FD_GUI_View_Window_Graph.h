@@ -27,6 +27,7 @@ public:
     double get_effect_slider_value();
     double get_effect();
 
+    //Value Outputs
     void set_mean_2(double m_2);
     void set_beta(double b);
     void set_power(double p);

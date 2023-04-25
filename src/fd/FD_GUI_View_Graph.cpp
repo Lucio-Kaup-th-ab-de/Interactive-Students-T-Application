@@ -19,11 +19,11 @@ void FD_GUI_View_Graph::set_point_list(const std::vector<std::pair<double, doubl
 
 void FD_GUI_View_Graph::draw()
 {
-    const int axis_space{100};
+    const int axis_space{60};
     const int x_left = x(), y_up = y();
     const int x_right = x() + w() - 1, y_down = y() + h() - 1;
     const int x_min_graph_draw_pos = x_left + axis_space;
-    const int x_max_graph_draw_pos = x_right - axis_space;
+    const int x_max_graph_draw_pos = x_right - axis_space + effect;
     const int y_min_graph_draw_pos = y_up + axis_space;
     const int y_max_graph_draw_pos = y_down - axis_space;
     const int x_graph_draw_size = x_max_graph_draw_pos - x_min_graph_draw_pos;
@@ -36,7 +36,7 @@ void FD_GUI_View_Graph::draw()
     // graph y axis
     fl_line(x_min_graph_draw_pos, y_min_graph_draw_pos, x_min_graph_draw_pos, y_max_graph_draw_pos);
     // graph x axis
-    fl_line(x_min_graph_draw_pos, y_max_graph_draw_pos, x_max_graph_draw_pos + effect, y_max_graph_draw_pos);
+    fl_line(x_min_graph_draw_pos, y_max_graph_draw_pos, x_max_graph_draw_pos, y_max_graph_draw_pos);
     const double x_axis_min_value{-5.0};
     const double x_axis_max_value{5.0};
     const double y_axis_min_value{0.0};
@@ -80,4 +80,7 @@ void FD_GUI_View_Graph::draw()
     fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * (a_border - x_axis_min_value) / x_axis_value_interval), y_min_graph_draw_pos, y_max_graph_draw_pos);
     //  c Grenze
     fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * (c_border - x_axis_min_value) / x_axis_value_interval), y_min_graph_draw_pos, y_max_graph_draw_pos);
+
+    // * Achsenbeschriftung:
+
 }

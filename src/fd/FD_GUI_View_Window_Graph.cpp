@@ -14,8 +14,6 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     // DF Output
     output_degrees_of_freedom = std::make_unique<Fl_Value_Output>(700, 530, 60, 40);
     output_degrees_of_freedom->label("df");
-    // output_degrees_of_freedom->labelcolor(fl_rgb_color(255, 20, 147));
-    // output_degrees_of_freedom->textcolor(fl_rgb_color(255, 20, 147));
     output_degrees_of_freedom->value(5); // Startwert
 
     //Weitere Outputs
@@ -39,14 +37,14 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     // Beta Niveau Output
     output_beta = std::make_unique<Fl_Value_Output>(980, 530, 30, 20);
     output_beta->label("Beta Niveau");
-    // output_beta->labelcolor(fl_rgb_color(0, 0, 255));
+    // output_beta->labelcolor(fl_rgb_color(0, 0, 255)); //todo Auf Farbe von Fläche ändern
     // output_beta->textcolor(fl_rgb_color(0, 0, 255));
     output_beta->value(0);
 
-    // Mean 2 Output
+    // Power Output
     output_power = std::make_unique<Fl_Value_Output>(980, 560, 30, 20);
     output_power->label("Power");
-    // output_power->labelcolor(fl_rgb_color(0, 0, 255));
+    // output_power->labelcolor(fl_rgb_color(0, 0, 255)); s//todo Auf Farbe von Fläche ändern
     // output_power->textcolor(fl_rgb_color(0, 0, 255));
     output_power->value(0);
 
