@@ -8,5 +8,5 @@ void IA_Graph_Creation_Controller_GUI::control_graph_creation()
 {
     int df = gui_manager.get_df_value();
     double effect = gui_manager.get_effect();
-    uci_graph_creation.create_graph(df, 5, effect); //! Nur als Beispiel Alpha
+    uci_graph_creation.create_graph(df, 0.05, effect); //! Nur als Beispiel Alpha
 };

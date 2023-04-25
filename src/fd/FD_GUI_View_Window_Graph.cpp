@@ -7,16 +7,16 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     : Fl_Window(x, y, width, height, title)
 {
     this->begin();
-    graph_label = std::make_unique<Fl_Box>(150, 35, 900, 40, "Student's t probability density function");
+    graph_label = std::make_unique<Fl_Box>(150, 35, 900, 40, "Interactive Visualization of Student's t-Distributions for Sample Size Planning");
     graph_label->labelfont(FL_BOLD);
     graph_label->labelsize(20);
 
     // DF Output
     output_degrees_of_freedom = std::make_unique<Fl_Value_Output>(700, 530, 60, 40);
     output_degrees_of_freedom->label("df");
-    output_degrees_of_freedom->value(5); // Startwert
+    output_degrees_of_freedom->value(6); // Startwert
 
-    //Weitere Outputs
+    // Weitere Outputs
     output_effect = std::make_unique<Fl_Value_Output>(2000, 530, 60, 40);
     output_effect->value(100); // Startwert
 
@@ -48,8 +48,8 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     // output_power->textcolor(fl_rgb_color(0, 0, 255));
     output_power->value(0);
 
-    // Degree of Freedom Slider
-    df_v_slider = std::make_unique<Fl_Value_Slider>(20, 530, 120, 25, "Degrees of Freedom");
+    // Degree of Freedom Slider //todo evtl noch alle Variablennamen in SSZ umbenennen
+    df_v_slider = std::make_unique<Fl_Value_Slider>(20, 530, 120, 25, "Sample Size");
     df_v_slider->type(FL_HOR_NICE_SLIDER); // Slider Typ
     df_v_slider->range(1.0, 10.0);         // Wertebereich des Sliders
     df_v_slider->step(1.0);                // Schrittweite
@@ -59,8 +59,8 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     // Effect Slider
     e_v_slider = std::make_unique<Fl_Value_Slider>(160, 530, 120, 25, "Effect size");
     e_v_slider->type(FL_HOR_NICE_SLIDER); // Slider Typ
-    e_v_slider->range(0, 400);          // Wertebereich des Sliders
-    e_v_slider->step(1);                // Schrittweite
+    e_v_slider->range(0, 400);            // Wertebereich des Sliders
+    e_v_slider->step(1);                  // Schrittweite
     e_v_slider->value(50.0);              // Startwert
     e_v_slider->callback(FD_GUI_Manager::static_gui_cb_effect_slider_callback, ui_pointer_for_callbacks);
 

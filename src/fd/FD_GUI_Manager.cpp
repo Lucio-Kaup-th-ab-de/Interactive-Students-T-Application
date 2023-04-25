@@ -37,7 +37,7 @@ void FD_GUI_Manager::update_view_graph_diagram(const std::vector<std::pair<doubl
 void FD_GUI_Manager::gui_cb_df_slider_callback(Fl_Widget *w)
 {
     Fl_Value_Slider *slider_value = (Fl_Value_Slider *)w;
-    int value = slider_value->value();
+    int value = slider_value->value() + 1;
     view_window_graph->set_df_value(value);
     graph_creation_controller->control_graph_creation();
 }
