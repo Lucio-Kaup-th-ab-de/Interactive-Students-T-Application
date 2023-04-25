@@ -14,7 +14,7 @@ private:
     std::vector<std::pair<double, double>> point_list{};
     double a_border{5}; //! Anfangswerte noch anpassen
     double c_border{10};
-    double effect{};
+    double effect{100};
     double alpha{5};
 };
 

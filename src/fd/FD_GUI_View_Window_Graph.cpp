@@ -18,6 +18,10 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     // output_degrees_of_freedom->textcolor(fl_rgb_color(255, 20, 147));
     output_degrees_of_freedom->value(5); // Startwert
 
+    //Weitere Outputs
+    output_effect = std::make_unique<Fl_Value_Output>(2000, 530, 60, 40);
+    output_effect->value(100); // Startwert
+
     // Mean 1 Output
     output_mean_1 = std::make_unique<Fl_Value_Output>(1100, 530, 30, 20);
     output_mean_1->label("Mean one");
@@ -57,10 +61,10 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     // Effect Slider
     e_v_slider = std::make_unique<Fl_Value_Slider>(160, 530, 120, 25, "Effect size");
     e_v_slider->type(FL_HOR_NICE_SLIDER); // Slider Typ
-    e_v_slider->range(0, 100.0);          // Wertebereich des Sliders
-    e_v_slider->step(0.1);                // Schrittweite
+    e_v_slider->range(0, 400);          // Wertebereich des Sliders
+    e_v_slider->step(1);                // Schrittweite
     e_v_slider->value(50.0);              // Startwert
-    // e_v_slider->callback(FD_GUI_Manager::static_gui_cb_e_slider_callback, ui_pointer_for_callbacks);
+    e_v_slider->callback(FD_GUI_Manager::static_gui_cb_effect_slider_callback, ui_pointer_for_callbacks);
 
     // Alpha Slider
     a_v_slider = std::make_unique<Fl_Value_Slider>(300, 530, 120, 25, "Alpha Error");
