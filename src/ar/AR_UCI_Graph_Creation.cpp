@@ -5,7 +5,7 @@ AR_UCI_Graph_Creation::AR_UCI_Graph_Creation(
     AR_STAT_Util_I &s)
     : graph_presenter(presenter), stat_util(s){};
 
-void AR_UCI_Graph_Creation::create_graph(int df, double alpha)
+void AR_UCI_Graph_Creation::create_graph(int df, double alpha, double input_effect)
 {
   std::vector<std::pair<double, double>> point_list{};
   double y{0};
@@ -15,5 +15,6 @@ void AR_UCI_Graph_Creation::create_graph(int df, double alpha)
   }
   a_border = std::round(stat_util.students_t_cdf(alpha, df) * 10.0) / 10.0;
   c_border = std::round(stat_util.students_t_cdf(1 - alpha, df) * 10.0) / 10.0;
-  graph_presenter.present_graph(point_list, a_border, c_border);
+  effect = input_effect;
+  graph_presenter.present_graph(point_list, a_border, c_border, effect);
 };

@@ -85,6 +85,11 @@ void FD_GUI_View_Window_Graph::set_df_value(int df)
     output_degrees_of_freedom->value(df);
 }
 
+void FD_GUI_View_Window_Graph::set_effect(double effect)
+{
+    output_effect->value(effect);
+}
+
 void FD_GUI_View_Window_Graph::set_mean_2(double m_2)
 {
     output_mean_2->value(m_2);
@@ -105,6 +110,11 @@ int FD_GUI_View_Window_Graph::get_df_value()
     return output_degrees_of_freedom->value();
 }
 
+double FD_GUI_View_Window_Graph::get_effect()
+{
+    return output_effect->value();
+}
+
 double FD_GUI_View_Window_Graph::get_mean_2()
 {
     return output_mean_2->value();
@@ -120,7 +130,7 @@ double FD_GUI_View_Window_Graph::get_power()
     return output_power->value();
 }
 
-void FD_GUI_View_Window_Graph::update_graph(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border)
+void FD_GUI_View_Window_Graph::update_graph(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border, double effect)
 {
-    graph->set_point_list(point_list, a_border, c_border);
+    graph->set_point_list(point_list, a_border, c_border, effect);
 };

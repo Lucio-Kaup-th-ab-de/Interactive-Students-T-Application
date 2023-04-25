@@ -7,5 +7,6 @@ IA_Graph_Creation_Controller_GUI::IA_Graph_Creation_Controller_GUI(IA_GUI_Manage
 void IA_Graph_Creation_Controller_GUI::control_graph_creation()
 {
     int df = gui_manager.get_df_value();
-    uci_graph_creation.create_graph(df, 5); //! Nur als Beispiel Alpha
+    double effect = gui_manager.get_effect();
+    uci_graph_creation.create_graph(df, 5, effect); //! Nur als Beispiel Alpha
 };

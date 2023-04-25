@@ -8,11 +8,12 @@ FD_GUI_View_Graph::FD_GUI_View_Graph(int x, int y, int width, int height, const 
 {
 }
 
-void FD_GUI_View_Graph::set_point_list(const std::vector<std::pair<double, double>> &pl, double a_b, double c_b)
+void FD_GUI_View_Graph::set_point_list(const std::vector<std::pair<double, double>> &pl, double a_b, double c_b, double ef)
 {
     point_list = pl;
     a_border = a_b;
     c_border = c_b;
+    effect = ef;
     redraw();
 }
 
@@ -76,8 +77,7 @@ void FD_GUI_View_Graph::draw()
     // *Fehlergrenzen
     fl_color(180, 180, 180);
     // a Grenze
-    fl_yxline(250, y_min_graph_draw_pos, y_max_graph_draw_pos);
+    fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * (a_border - x_axis_min_value) / x_axis_value_interval), y_min_graph_draw_pos, y_max_graph_draw_pos);
     //  c Grenze
-
-    fl_yxline(c_border, y_min_graph_draw_pos, y_max_graph_draw_pos);
+    fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * (c_border - x_axis_min_value) / x_axis_value_interval), y_min_graph_draw_pos, y_max_graph_draw_pos);
 }

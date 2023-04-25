@@ -11,12 +11,13 @@ public:
     AR_UCI_Graph_Creation(
         AR_UCI_Graph_Creation_OB &presenter,
         AR_STAT_Util_I &s);
-    void create_graph(int df, double alpha);
+    void create_graph(int df, double alpha, double input_effect);
 
 private:
     AR_UCI_Graph_Creation_OB &graph_presenter;
     AR_STAT_Util_I &stat_util;
     double a_border;
     double c_border;
+    double effect;
 };
 #endif /* AR_UCI_GRAPH_CREATION_H */

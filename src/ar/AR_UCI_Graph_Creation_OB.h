@@ -7,7 +7,7 @@
 class AR_UCI_Graph_Creation_OB
 {
 public:
-   virtual void present_graph(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border) = 0;
+   virtual void present_graph(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border, double effect) = 0;
 
    virtual ~AR_UCI_Graph_Creation_OB() = default;
    AR_UCI_Graph_Creation_OB() = default;

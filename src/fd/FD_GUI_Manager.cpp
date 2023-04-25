@@ -23,11 +23,17 @@ int FD_GUI_Manager::get_df_value()
     return view_window_graph->get_df_value();
 }
 
-void FD_GUI_Manager::update_view_graph_diagram(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border)
+double FD_GUI_Manager::get_effect()
 {
-    view_window_graph->update_graph(point_list, a_border, c_border);
+    return view_window_graph->get_effect();
 }
 
+void FD_GUI_Manager::update_view_graph_diagram(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border, double effect)
+{
+    view_window_graph->update_graph(point_list, a_border, c_border, effect);
+}
+
+// Degree of Freedom Slider
 void FD_GUI_Manager::gui_cb_df_slider_callback(Fl_Widget *w)
 {
     Fl_Value_Slider *slider_value = (Fl_Value_Slider *)w;
@@ -39,4 +45,18 @@ void FD_GUI_Manager::gui_cb_df_slider_callback(Fl_Widget *w)
 void FD_GUI_Manager::static_gui_cb_df_slider_callback(Fl_Widget *w, void *f)
 {
     ((FD_GUI_Manager *)f)->gui_cb_df_slider_callback(w);
+}
+
+// Effect Slider
+void FD_GUI_Manager::gui_cb_effect_slider_callback(Fl_Widget *w)
+{
+    Fl_Value_Slider *slider_value = (Fl_Value_Slider *)w;
+    int value = slider_value->value();
+    view_window_graph->set_effect(value);
+    graph_creation_controller->control_graph_creation();
+}
+
+void FD_GUI_Manager::static_gui_cb_effect_slider_callback(Fl_Widget *w, void *f)
+{
+    ((FD_GUI_Manager *)f)->gui_cb_effect_slider_callback(w);
 }
