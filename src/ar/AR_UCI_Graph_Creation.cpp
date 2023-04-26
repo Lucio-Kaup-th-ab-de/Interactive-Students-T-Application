@@ -13,8 +13,8 @@ void AR_UCI_Graph_Creation::create_graph(int df, double alpha, double input_effe
   {
     point_list.push_back(std::pair<double, double>{x, stat_util.students_t_pdf(x, df)});
   }
-  a_border = std::round(stat_util.students_t_cdf(alpha, df) * 10.0) / 10.0;
-  c_border = std::round(stat_util.students_t_cdf(1 - alpha, df) * 10.0) / 10.0;
+  a_border = (stat_util.students_t_cdf(alpha, df) * 10.0) / 10.0; //! evtl wieder round einbauen
+  c_border = (stat_util.students_t_cdf(1 - alpha, df) * 10.0) / 10.0;
   effect = input_effect;
   graph_presenter.present_graph(point_list, a_border, c_border, effect);
 };
