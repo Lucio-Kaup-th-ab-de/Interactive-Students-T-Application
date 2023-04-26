@@ -8,13 +8,15 @@ AR_UCI_Graph_Creation::AR_UCI_Graph_Creation(
 void AR_UCI_Graph_Creation::create_graph(int df, double alpha, double input_effect)
 {
   std::vector<std::pair<double, double>> point_list{};
-  double y{0};
-  for (double x = -10.0; x <= 10.0; x = x + 0.1)
+  for (double x = -10.0; x <= 10.0; x += 0.1)
   {
-    point_list.push_back(std::pair<double, double>{x, stat_util.students_t_pdf(x, df)});
+    double y = stat_util.students_t_pdf(x, df);
+    point_list.push_back(std::pair<double, double>{x, y});
   }
-  a_border = (stat_util.students_t_cdf(alpha, df) * 10.0) / 10.0; //! evtl wieder round einbauen
-  c_border = (stat_util.students_t_cdf(1 - alpha, df) * 10.0) / 10.0;
+
+  // Berechne a_border und c_border mit der Quantilfunktion
+  a_border = stat_util.students_t_quantile(alpha / 2, df);
+  c_border = stat_util.students_t_quantile(1 - alpha / 2, df);
   effect = input_effect;
   graph_presenter.present_graph(point_list, a_border, c_border, effect);
 };

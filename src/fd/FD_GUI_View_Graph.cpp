@@ -40,21 +40,21 @@ void FD_GUI_View_Graph::draw()
     // draw Scale
     if (first_draw) // Zeichnet die Skala nur beim ersten Zeichnen
     {
-    
-    // draw graph background area
-    fl_color(FL_WHITE);
-    fl_rectf(x(), y(), w() + 290, h());
 
-    // *draw axes
-    fl_color(FL_BLACK);
-    // graph y axis
-    fl_line(x_min_graph_draw_pos, y_min_graph_draw_pos, x_min_graph_draw_pos, y_max_graph_draw_pos);
-    // graph x axis
-    fl_line(x_min_graph_draw_pos, y_max_graph_draw_pos, x_max_graph_draw_pos, y_max_graph_draw_pos);
+        // draw graph background area
+        fl_color(FL_WHITE);
+        fl_rectf(x(), y(), w() + 290, h());
+
+        // *draw axes
+        fl_color(FL_BLACK);
+        // graph y axis
+        fl_line(x_min_graph_draw_pos, y_min_graph_draw_pos, x_min_graph_draw_pos, y_max_graph_draw_pos);
+        // graph x axis
+        fl_line(x_min_graph_draw_pos, y_max_graph_draw_pos, x_max_graph_draw_pos, y_max_graph_draw_pos);
         const int scale_fontsize = 12;
         fl_font(FL_HELVETICA, scale_fontsize);
         // x-Scale
-        const double x_scale_interval{x_axis_value_interval/20};
+        const double x_scale_interval{x_axis_value_interval / 20};
         for (double value = x_axis_min_value; value <= x_axis_max_value; value += x_scale_interval)
         {
             double x_position = x_min_graph_draw_pos + ((value - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval;
@@ -67,7 +67,7 @@ void FD_GUI_View_Graph::draw()
         // x-axis label
         fl_draw("X-Achse", x_max_graph_draw_pos, y_max_graph_draw_pos + 30);
         // y-Scale
-        const double y_scale_interval{y_axis_value_interval/10};
+        const double y_scale_interval{y_axis_value_interval / 10};
         for (double value = y_axis_min_value; value <= y_axis_max_value + 0.01; value += y_scale_interval)
         {
             double y_position = y_max_graph_draw_pos - ((value - y_axis_min_value) * y_graph_draw_size) / y_axis_value_interval;
@@ -79,7 +79,7 @@ void FD_GUI_View_Graph::draw()
         }
         // y-axis label
         fl_draw("Y-Achse", x_min_graph_draw_pos - 50, y_min_graph_draw_pos - 20);
-        //first_draw = false; //*Steuert, ob das blanke Koordiantensystem nur einmal oder immer aufs neue gezeichnet wird
+        // first_draw = false; //*Steuert, ob das blanke Koordiantensystem nur einmal oder immer aufs neue gezeichnet wird
     }
 
     // *Verteilung eins
@@ -94,7 +94,7 @@ void FD_GUI_View_Graph::draw()
             int x_end = x_min_graph_draw_pos + std::round(x_graph_draw_size * ((point_list.at(i + 1).first - x_axis_min_value) / x_axis_value_interval));
             int y_start = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((point_list.at(i).second - y_axis_min_value) / y_axis_value_interval));
             int y_end = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((point_list.at(i + 1).second - y_axis_min_value) / y_axis_value_interval));
-            if(x_start >= x_min_graph_draw_pos && x_end <= x_max_graph_draw_pos)
+            if (x_start >= x_min_graph_draw_pos && x_end <= x_max_graph_draw_pos)
             {
                 fl_line(x_start, y_start, x_end, y_end);
             }
@@ -111,18 +111,18 @@ void FD_GUI_View_Graph::draw()
             int x_end = x_min_graph_draw_pos + std::round(x_graph_draw_size * ((point_list.at(i + 1).first - x_axis_min_value) / x_axis_value_interval));
             int y_start = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((point_list.at(i).second - y_axis_min_value) / y_axis_value_interval));
             int y_end = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((point_list.at(i + 1).second - y_axis_min_value) / y_axis_value_interval));
-            if(x_start >= x_min_graph_draw_pos - effect && x_end <= x_max_graph_draw_pos - effect)
+            if (x_start >= x_min_graph_draw_pos - effect && x_end <= x_max_graph_draw_pos - effect)
             {
-            fl_line(x_start + effect, y_start, x_end + effect, y_end);
+                fl_line(x_start + effect, y_start, x_end + effect, y_end);
             }
         }
     }
 
-    // *Fehlergrenzen 
+    // *Fehlergrenzen
     //! Funktionieren noch nicht
     fl_color(180, 180, 180);
     // a Grenze
-    fl_yxline(x_min_graph_draw_pos + a_border, y_min_graph_draw_pos, y_max_graph_draw_pos);
+    fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((a_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
     //  c Grenze
-    fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * c_border / x_axis_value_interval), y_min_graph_draw_pos, y_max_graph_draw_pos);
+    fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
 }
