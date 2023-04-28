@@ -69,7 +69,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     // Alpha Slider
     a_v_slider = std::make_unique<Fl_Value_Slider>(300, 530, 120, 25, "Alpha Error");
     a_v_slider->type(FL_HOR_NICE_SLIDER); // Slider Typ
-    a_v_slider->range(0.01, 1);           // Wertebereich des Sliders
+    a_v_slider->range(0.01, 0.5);         // Wertebereich des Sliders
     a_v_slider->step(0.01);               // Schrittweite
     a_v_slider->value(0.05);              // Startwert
     a_v_slider->callback(FD_GUI_Manager::static_gui_cb_alpha_slider_callback, ui_pointer_for_callbacks);
