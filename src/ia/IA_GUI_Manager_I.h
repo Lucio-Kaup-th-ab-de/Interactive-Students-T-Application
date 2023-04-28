@@ -10,6 +10,7 @@ public:
    virtual void update_view_graph_diagram(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border, double effect) = 0;
    virtual int get_df_value() = 0;
    virtual double get_effect() = 0;
+   virtual double get_alpha() = 0;
    virtual ~IA_GUI_Manager_I() = default;
    IA_GUI_Manager_I() = default;
    IA_GUI_Manager_I(const IA_GUI_Manager_I &) = default;

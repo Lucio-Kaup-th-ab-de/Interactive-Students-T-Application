@@ -119,7 +119,6 @@ void FD_GUI_View_Graph::draw()
     }
 
     // *Fehlergrenzen
-    //! Funktionieren noch nicht
     fl_color(180, 180, 180);
     // a Grenze
     fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((a_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);

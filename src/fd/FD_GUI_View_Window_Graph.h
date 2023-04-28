@@ -20,14 +20,15 @@ public:
 
     // slider
     void set_df_value(int df);
-    double get_df_slider_value();
     int get_df_value();
 
     void set_effect(double effect);
-    double get_effect_slider_value();
     double get_effect();
 
-    //Value Outputs
+    void set_alpha(double alpha);
+    double get_alpha();
+
+    // Value Outputs
     void set_mean_2(double m_2);
     void set_beta(double b);
     void set_power(double p);
@@ -41,6 +42,7 @@ private:
     std::unique_ptr<Fl_Box> graph_label;
     std::unique_ptr<Fl_Value_Output> output_degrees_of_freedom;
     std::unique_ptr<Fl_Value_Output> output_effect;
+    std::unique_ptr<Fl_Value_Output> output_alpha;
     std::unique_ptr<Fl_Value_Output> output_mean_1;
     std::unique_ptr<Fl_Value_Output> output_mean_2;
     std::unique_ptr<Fl_Value_Output> output_beta;

@@ -28,6 +28,11 @@ double FD_GUI_Manager::get_effect()
     return view_window_graph->get_effect();
 }
 
+double FD_GUI_Manager::get_alpha()
+{
+    return view_window_graph->get_alpha();
+}
+
 void FD_GUI_Manager::update_view_graph_diagram(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border, double effect)
 {
     view_window_graph->update_graph(point_list, a_border, c_border, effect);
@@ -59,4 +64,18 @@ void FD_GUI_Manager::gui_cb_effect_slider_callback(Fl_Widget *w)
 void FD_GUI_Manager::static_gui_cb_effect_slider_callback(Fl_Widget *w, void *f)
 {
     ((FD_GUI_Manager *)f)->gui_cb_effect_slider_callback(w);
+}
+
+// alpha Slider
+void FD_GUI_Manager::gui_cb_alpha_slider_callback(Fl_Widget *w)
+{
+    Fl_Value_Slider *slider_value = (Fl_Value_Slider *)w;
+    double value = slider_value->value();
+    view_window_graph->set_alpha(value);
+    graph_creation_controller->control_graph_creation();
+}
+
+void FD_GUI_Manager::static_gui_cb_alpha_slider_callback(Fl_Widget *w, void *f)
+{
+    ((FD_GUI_Manager *)f)->gui_cb_alpha_slider_callback(w);
 }

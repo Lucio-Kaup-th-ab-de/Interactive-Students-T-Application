@@ -16,9 +16,11 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     output_degrees_of_freedom->label("df");
     output_degrees_of_freedom->value(6); // Startwert
 
-    // Weitere Outputs
+    // ! Weitere Outputs; evtl irgendwie anders die Pointer initialisieren
     output_effect = std::make_unique<Fl_Value_Output>(2000, 530, 60, 40);
     output_effect->value(100); // Startwert
+    output_alpha = std::make_unique<Fl_Value_Output>(2000, 630, 60, 40);
+    output_alpha->value(0.1); // Startwert
 
     // Mean 1 Output
     output_mean_1 = std::make_unique<Fl_Value_Output>(1100, 530, 30, 20);
@@ -67,20 +69,14 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     // Alpha Slider
     a_v_slider = std::make_unique<Fl_Value_Slider>(300, 530, 120, 25, "Alpha Error");
     a_v_slider->type(FL_HOR_NICE_SLIDER); // Slider Typ
-    a_v_slider->range(0, 20.0);           // Wertebereich des Sliders
-    a_v_slider->step(0.1);                // Schrittweite
-    a_v_slider->value(5.0);               // Startwert
-    // e_v_slider->callback(FD_GUI_Manager::static_gui_cb_e_slider_callback, ui_pointer_for_callbacks);
+    a_v_slider->range(0.01, 1);           // Wertebereich des Sliders
+    a_v_slider->step(0.01);               // Schrittweite
+    a_v_slider->value(0.05);              // Startwert
+    a_v_slider->callback(FD_GUI_Manager::static_gui_cb_alpha_slider_callback, ui_pointer_for_callbacks);
 
     graph = std::make_unique<FD_GUI_View_Graph>(5, 80, 900, 425, "");
     this->end();
 }
-/* //! Brauch ich evtl nicht mehr
-double FD_GUI_View_Window_Graph::get_df_slider_value()
-{
-    double slider_value = static_cast<double>(df_v_slider->value());
-    return slider_value;
-}*/
 
 void FD_GUI_View_Window_Graph::set_df_value(int df)
 {
@@ -90,6 +86,11 @@ void FD_GUI_View_Window_Graph::set_df_value(int df)
 void FD_GUI_View_Window_Graph::set_effect(double effect)
 {
     output_effect->value(effect);
+}
+
+void FD_GUI_View_Window_Graph::set_alpha(double alpha)
+{
+    output_alpha->value(alpha);
 }
 
 void FD_GUI_View_Window_Graph::set_mean_2(double m_2)
@@ -115,6 +116,11 @@ int FD_GUI_View_Window_Graph::get_df_value()
 double FD_GUI_View_Window_Graph::get_effect()
 {
     return output_effect->value();
+}
+
+double FD_GUI_View_Window_Graph::get_alpha()
+{
+    return output_alpha->value();
 }
 
 double FD_GUI_View_Window_Graph::get_mean_2()
