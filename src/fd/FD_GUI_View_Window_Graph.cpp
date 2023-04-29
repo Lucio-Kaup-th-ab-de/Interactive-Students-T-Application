@@ -74,7 +74,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     a_v_slider->value(0.05);              // Startwert
     a_v_slider->callback(FD_GUI_Manager::static_gui_cb_alpha_slider_callback, ui_pointer_for_callbacks);
 
-    graph = std::make_unique<FD_GUI_View_Graph>(5, 80, 900, 425, "");
+    graph = std::make_unique<FD_GUI_View_Graph>(5, 80, 1130, 425, "");
     this->end();
 }
 

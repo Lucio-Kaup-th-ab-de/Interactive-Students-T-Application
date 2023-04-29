@@ -25,13 +25,13 @@ void FD_GUI_View_Graph::draw()
     const int x_left = x(), y_up = y();
     const int x_right = x() + w() - 1, y_down = y() + h() - 1;
     const int x_min_graph_draw_pos = x_left + axis_space;
-    int x_max_graph_draw_pos = x_right - axis_space + effect;
+    int x_max_graph_draw_pos = x_right - axis_space;
     const int y_min_graph_draw_pos = y_up + axis_space;
     const int y_max_graph_draw_pos = y_down - axis_space;
     const int x_graph_draw_size = x_max_graph_draw_pos - x_min_graph_draw_pos;
     const int y_graph_draw_size = y_max_graph_draw_pos - y_min_graph_draw_pos;
     const double x_axis_min_value{-5.0};
-    const double x_axis_max_value{5.0};
+    const double x_axis_max_value{7.5};
     const double y_axis_min_value{0.0};
     const double y_axis_max_value{0.4};
     const double x_axis_value_interval{x_axis_max_value - x_axis_min_value};
@@ -43,7 +43,7 @@ void FD_GUI_View_Graph::draw()
 
         // draw graph background area
         fl_color(FL_WHITE);
-        fl_rectf(x(), y(), w() + 290, h());
+        fl_rectf(x(), y(), w() + axis_space, h());
 
         // *draw axes
         fl_color(FL_BLACK);
