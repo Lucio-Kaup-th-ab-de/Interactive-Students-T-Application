@@ -16,7 +16,12 @@ class FD_GUI_View_Window_Graph : public Fl_Window
 {
 public:
     FD_GUI_View_Window_Graph(int x, int y, int width, int height, const char *title, void *ui_pointer_for_callbacks);
-    void update_graph(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border, double effect);
+    void update_graph(const std::vector<std::pair<double, double>> &point_list,
+                      double a_border,
+                      double c_border,
+                      double effect,
+                      double power,
+                      double beta);
 
     // slider
     void set_df_value(int df);

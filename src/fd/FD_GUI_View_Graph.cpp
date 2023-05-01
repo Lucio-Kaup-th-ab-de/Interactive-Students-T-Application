@@ -10,12 +10,19 @@ FD_GUI_View_Graph::FD_GUI_View_Graph(int x, int y, int width, int height, const 
 {
 }
 
-void FD_GUI_View_Graph::set_point_list(const std::vector<std::pair<double, double>> &pl, double a_b, double c_b, double ef)
+void FD_GUI_View_Graph::set_point_list(const std::vector<std::pair<double, double>> &pl,
+                                       double a_b,
+                                       double c_b,
+                                       double ef,
+                                       double p,
+                                       double b)
 {
     point_list = pl;
     a_border = a_b;
     c_border = c_b;
     effect = ef;
+    power = p;
+    beta = b;
     redraw();
 }
 

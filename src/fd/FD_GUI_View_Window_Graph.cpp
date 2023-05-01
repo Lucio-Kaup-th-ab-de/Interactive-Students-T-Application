@@ -98,14 +98,14 @@ void FD_GUI_View_Window_Graph::set_mean_2(double m_2)
     output_mean_2->value(m_2);
 }
 
-void FD_GUI_View_Window_Graph::set_beta(double b)
+void FD_GUI_View_Window_Graph::set_beta(double beta)
 {
-    output_beta->value(b);
+    output_beta->value(beta);
 }
 
-void FD_GUI_View_Window_Graph::set_power(double p)
+void FD_GUI_View_Window_Graph::set_power(double power)
 {
-    output_power->value(p);
+    output_power->value(power);
 }
 
 int FD_GUI_View_Window_Graph::get_df_value()
@@ -138,7 +138,17 @@ double FD_GUI_View_Window_Graph::get_power()
     return output_power->value();
 }
 
-void FD_GUI_View_Window_Graph::update_graph(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border, double effect)
+void FD_GUI_View_Window_Graph::update_graph(const std::vector<std::pair<double, double>> &point_list,
+                                            double a_border,
+                                            double c_border,
+                                            double effect,
+                                            double power,
+                                            double beta)
 {
-    graph->set_point_list(point_list, a_border, c_border, effect);
+    graph->set_point_list(point_list,
+                          a_border,
+                          c_border,
+                          effect,
+                          power,
+                          beta);
 };

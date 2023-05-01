@@ -33,9 +33,19 @@ double FD_GUI_Manager::get_alpha()
     return view_window_graph->get_alpha();
 }
 
-void FD_GUI_Manager::update_view_graph_diagram(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border, double effect)
+void FD_GUI_Manager::update_view_graph_diagram(const std::vector<std::pair<double, double>> &point_list,
+                                               double a_border,
+                                               double c_border,
+                                               double effect,
+                                               double power,
+                                               double beta)
 {
-    view_window_graph->update_graph(point_list, a_border, c_border, effect);
+    view_window_graph->update_graph(point_list,
+                                    a_border,
+                                    c_border,
+                                    effect,
+                                    power,
+                                    beta);
 }
 
 // Degree of Freedom Slider

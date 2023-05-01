@@ -15,7 +15,12 @@ class FD_GUI_Manager : public IA_GUI_Manager_I
 public:
     FD_GUI_Manager();
     void run() override;
-    void update_view_graph_diagram(const std::vector<std::pair<double, double>> &point_list, double a_border, double c_border, double effect) override;
+    void update_view_graph_diagram(const std::vector<std::pair<double, double>> &point_list,
+                                   double a_border,
+                                   double c_border,
+                                   double effect,
+                                   double power,
+                                   double beta) override;
     int get_df_value() override;
     double get_effect() override;
     double get_alpha() override;

@@ -19,5 +19,7 @@ private:
     double a_border;
     double c_border;
     double effect;
+    double beta;
+    double power;
 };
 #endif /* AR_UCI_GRAPH_CREATION_H */
