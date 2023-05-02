@@ -18,6 +18,23 @@
           "executable": "powershell.exe"
         }
       }
+    },
+    {
+      "label": "build and run alternative path",
+      "type": "shell",
+      "command": "cmake --build C:/Github/LK-Students-t-dist/build; C:/Github/LK-Students-t-dist/build/student_t_distribution",
+      "group": {
+        "kind": "build"
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "options": {
+        "shell": {
+          "executable": "powershell.exe"
+        }
+      }
     }
   ]
 }
