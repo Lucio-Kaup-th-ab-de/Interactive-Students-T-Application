@@ -13,6 +13,7 @@ public:
                                           double effect,
                                           double power,
                                           double beta) = 0;
+   virtual void update_outputs(double power, double beta) = 0;                                         
    virtual int get_df_value() = 0;
    virtual double get_effect() = 0;
    virtual double get_alpha() = 0;

@@ -16,3 +16,7 @@ void IA_Graph_Creation_Presenter_GUI::present_graph(const std::vector<std::pair<
                                           power,
                                           beta);
 };
+
+void IA_Graph_Creation_Presenter_GUI::present_outputs(double power, double beta){
+    gui_manager.update_outputs(power, beta);
+}

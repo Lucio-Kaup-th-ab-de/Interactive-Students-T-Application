@@ -16,6 +16,7 @@ public:
                        double effect,
                        double power,
                        double beta);
+    void present_outputs(double power, double beta);
 
 private:
     IA_GUI_Manager_I &gui_manager;

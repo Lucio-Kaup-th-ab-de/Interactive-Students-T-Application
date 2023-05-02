@@ -21,6 +21,7 @@ public:
                                    double effect,
                                    double power,
                                    double beta) override;
+    void update_outputs(double power, double beta) override;                                   
     int get_df_value() override;
     double get_effect() override;
     double get_alpha() override;

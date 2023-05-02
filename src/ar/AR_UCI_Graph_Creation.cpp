@@ -22,4 +22,5 @@ void AR_UCI_Graph_Creation::create_graph(int df, double alpha, double input_effe
   power = 1 - stat_util.students_t_cdf(c_border - effect, df);
   beta = 1 - power;
   graph_presenter.present_graph(point_list, a_border, c_border, effect, power, beta);
+  graph_presenter.present_outputs(power, beta);
 };

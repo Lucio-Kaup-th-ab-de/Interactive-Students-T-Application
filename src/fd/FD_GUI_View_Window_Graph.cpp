@@ -37,14 +37,14 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     output_mean_2->value(0);
 
     // Beta Niveau Output
-    output_beta = std::make_unique<Fl_Value_Output>(980, 530, 30, 20);
+    output_beta = std::make_unique<Fl_Value_Output>(940, 530, 60, 20);
     output_beta->label("Beta Niveau");
     // output_beta->labelcolor(fl_rgb_color(0, 0, 255)); //todo Auf Farbe von Fläche ändern
     // output_beta->textcolor(fl_rgb_color(0, 0, 255));
     output_beta->value(0);
 
     // Power Output
-    output_power = std::make_unique<Fl_Value_Output>(980, 560, 30, 20);
+    output_power = std::make_unique<Fl_Value_Output>(940, 560, 60, 20);
     output_power->label("Power");
     // output_power->labelcolor(fl_rgb_color(0, 0, 255)); s//todo Auf Farbe von Fläche ändern
     // output_power->textcolor(fl_rgb_color(0, 0, 255));

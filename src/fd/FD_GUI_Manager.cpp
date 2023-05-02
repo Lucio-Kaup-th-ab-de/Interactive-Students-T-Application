@@ -48,6 +48,11 @@ void FD_GUI_Manager::update_view_graph_diagram(const std::vector<std::pair<doubl
                                     beta);
 }
 
+void FD_GUI_Manager::update_outputs(double power, double beta)
+{
+    view_window_graph->set_power(power);
+    view_window_graph->set_beta(beta);
+}
 // Degree of Freedom Slider
 void FD_GUI_Manager::gui_cb_df_slider_callback(Fl_Widget *w)
 {

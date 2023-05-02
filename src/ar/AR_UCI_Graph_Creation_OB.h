@@ -14,6 +14,8 @@ public:
                               double power,
                               double beta) = 0;
 
+   virtual void present_outputs(double power, double beta) = 0;
+
    virtual ~AR_UCI_Graph_Creation_OB() = default;
    AR_UCI_Graph_Creation_OB() = default;
    AR_UCI_Graph_Creation_OB(const AR_UCI_Graph_Creation_OB &) = default;
