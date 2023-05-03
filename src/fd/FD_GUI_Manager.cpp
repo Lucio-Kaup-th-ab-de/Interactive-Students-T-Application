@@ -71,8 +71,8 @@ void FD_GUI_Manager::static_gui_cb_df_slider_callback(Fl_Widget *w, void *f)
 void FD_GUI_Manager::gui_cb_effect_slider_callback(Fl_Widget *w)
 {
     Fl_Value_Slider *slider_value = (Fl_Value_Slider *)w;
-    double value = slider_value->value();
-    view_window_graph->set_effect(value * 80);
+    double value = slider_value->value()*80;
+    view_window_graph->set_effect(value);
     view_window_graph->set_mean_2(value);
     graph_creation_controller->control_graph_creation();
 }

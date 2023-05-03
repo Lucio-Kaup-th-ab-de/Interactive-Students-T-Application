@@ -98,6 +98,7 @@ void FD_GUI_View_Window_Graph::set_mean_2(double m_2)
     output_mean_2->value(m_2);
 }
 
+//TODO Power und Beta hier evtl wieder entfernen
 void FD_GUI_View_Window_Graph::set_beta(double beta)
 {
     output_beta->value(beta);
