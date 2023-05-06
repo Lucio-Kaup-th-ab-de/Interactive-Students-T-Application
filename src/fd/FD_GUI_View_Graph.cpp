@@ -36,10 +36,11 @@ void FD_GUI_View_Graph::draw_area(double left_border,
                                   double x_amv,
                                   double y_amv,
                                   double x_avi,
-                                  double y_avi)
+                                  double y_avi,
+                                  double effect)
 {
     const double x_min_graph_draw_pos = static_cast<double>(x_min_gdp);
-    const double y_max_graph_draw_pos = static_cast<double>(y_max_gdp); //? Soweit ich es bisher verstanden habe ist dieser Wert y = 0 im Koordinatensystem
+    const double y_max_graph_draw_pos = static_cast<double>(y_max_gdp);
     const double x_graph_draw_size = static_cast<double>(x_gds);
     const double y_graph_draw_size = static_cast<double>(y_gds);
     const double x_axis_min_value = x_amv;
@@ -53,10 +54,9 @@ void FD_GUI_View_Graph::draw_area(double left_border,
     double left_border_y = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((left_border_y_val - y_axis_min_value) / y_axis_value_interval));
     fl_vertex(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((left_border - x_axis_min_value) / x_axis_value_interval)), left_border_y);
 
-    // fl_vertex(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((left_border - x_axis_min_value) / x_axis_value_interval)), find_y_value_for_x(point_list, left_border));
     for (size_t i = 0; i < point_list.size(); ++i)
     {
-        double x_val = point_list.at(i).first;
+        double x_val = point_list.at(i).first + effect/80;
         double y_val = point_list.at(i).second;
 
         if (x_val >= left_border && x_val <= right_border)
@@ -75,11 +75,13 @@ void FD_GUI_View_Graph::draw()
 {
     // TODO Reihenfolge der Zeichnung noch so anpassen, dass alles übersichtlich ist
     // TODO Startwert vom Effekt noch anpassen
+    // TODO Farben der Flächen anpassen
+    fl_antialias(1);
     const int axis_space{60};
     const int x_left = x(), y_up = y();
     const int x_right = x() + w() - 1, y_down = y() + h() - 1;
     const int x_min_graph_draw_pos = x_left + axis_space;
-    const int x_max_graph_draw_pos = x_right - axis_space; // TODO vllt noch const adden
+    const int x_max_graph_draw_pos = x_right - axis_space; // ! vllt macht const hier noch Probleme
     const int y_min_graph_draw_pos = y_up + axis_space;
     const int y_max_graph_draw_pos = y_down - axis_space;
     const int x_graph_draw_size = x_max_graph_draw_pos - x_min_graph_draw_pos;
@@ -138,8 +140,25 @@ void FD_GUI_View_Graph::draw()
     //  c Grenze
     fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
 
-    // *Flächenberechnung
+    // *Flächenzeichnungen
     // Linke Alpha Fläche
+    //TODO Funktioniert noch nicht
+    fl_color(255, 0, 0);
+    draw_area(x_min_graph_draw_pos,
+              a_border,
+              point_list,
+              x_min_graph_draw_pos,
+              y_max_graph_draw_pos,
+              x_graph_draw_size,
+              y_graph_draw_size,
+              x_axis_min_value,
+              y_axis_min_value,
+              x_axis_value_interval,
+              y_axis_value_interval,
+              effect);
+
+    // Rechte Alpha Fläche
+    // TODO Zeichnung nach Rechts noch begrenzen
     fl_color(255, 0, 0);
     draw_area(c_border,
               x_max_graph_draw_pos,
@@ -151,7 +170,8 @@ void FD_GUI_View_Graph::draw()
               x_axis_min_value,
               y_axis_min_value,
               x_axis_value_interval,
-              y_axis_value_interval);
+              y_axis_value_interval,
+              0);
 
     // draw Scale
     // *draw axes

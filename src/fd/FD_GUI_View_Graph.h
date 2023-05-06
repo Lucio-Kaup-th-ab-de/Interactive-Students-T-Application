@@ -24,7 +24,8 @@ public:
                    double x_amv,
                    double y_amv,
                    double x_avi,
-                   double y_avi);
+                   double y_avi,
+                   double effect);
 
 private:
     double find_y_value_for_x(const std::vector<std::pair<double, double>> &point_list, double x);
