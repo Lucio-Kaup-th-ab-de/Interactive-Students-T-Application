@@ -2,6 +2,7 @@
 #include <cmath>
 #include <sstream>
 #include <iomanip>
+#include <memory>
 #include "FD_GUI_View_Graph.h"
 #include <iostream>
 
@@ -56,7 +57,7 @@ void FD_GUI_View_Graph::draw_area(double left_border,
 
     for (size_t i = 0; i < point_list.size(); ++i)
     {
-        double x_val = point_list.at(i).first + effect/80;
+        double x_val = point_list.at(i).first + effect / 80;
         double y_val = point_list.at(i).second;
 
         if (x_val >= left_border && x_val <= right_border)
@@ -133,16 +134,24 @@ void FD_GUI_View_Graph::draw()
         }
     }
 
-    // *Fehlergrenzen
-    fl_color(180, 180, 180);
-    // a Grenze
-    fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((a_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
-    //  c Grenze
-    fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
-
     // *Flächenzeichnungen
+    // Power Fläche
+    // TODO Zeichnung nach Rechts noch begrenzen
+    fl_color(0, 0, 255);
+    draw_area(c_border,
+              x_max_graph_draw_pos,
+              point_list,
+              x_min_graph_draw_pos,
+              y_max_graph_draw_pos,
+              x_graph_draw_size,
+              y_graph_draw_size,
+              x_axis_min_value,
+              y_axis_min_value,
+              x_axis_value_interval,
+              y_axis_value_interval,
+              effect);
     // Linke Alpha Fläche
-    //TODO Funktioniert noch nicht
+    // TODO Funktioniert noch nicht
     fl_color(255, 0, 0);
     draw_area(x_min_graph_draw_pos,
               a_border,
@@ -173,8 +182,19 @@ void FD_GUI_View_Graph::draw()
               y_axis_value_interval,
               0);
 
-    // draw Scale
+    // *Fehlergrenzen
+    fl_color(100, 100, 100);
+
+    // a Grenze
+    fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((a_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
+    fl_yxline(x_min_graph_draw_pos + 1 + std::round(x_graph_draw_size * ((a_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
+    // fl_yxline(x_min_graph_draw_pos - 1 + std::round(x_graph_draw_size * ((a_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
+    //   c Grenze
+    fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
+    fl_yxline(x_min_graph_draw_pos + 1 + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
+
     // *draw axes
+    // draw Scale
     fl_color(FL_BLACK);
     // graph y axis
     fl_line(x_min_graph_draw_pos, y_min_graph_draw_pos, x_min_graph_draw_pos, y_max_graph_draw_pos);
