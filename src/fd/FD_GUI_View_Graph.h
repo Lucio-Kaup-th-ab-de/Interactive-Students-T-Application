@@ -14,12 +14,24 @@ public:
                         double ef,
                         double p,
                         double b);
+    void draw_area(double left_border,
+                   double right_border,
+                   const std::vector<std::pair<double, double>> &point_list,
+                   int x_min_gdp,
+                   int y_max_gdp,
+                   int x_gds,
+                   int y_gds,
+                   double x_amv,
+                   double y_amv,
+                   double x_avi,
+                   double y_avi);
 
 private:
+    double find_y_value_for_x(const std::vector<std::pair<double, double>> &point_list, double x);
     std::vector<std::pair<double, double>> point_list{};
-    double a_border{5}; //! Anfangswerte noch anpassen
-    double c_border{10};
-    double effect{200}; //? Hier übergebener Parameter hat keinen Einfluss
+    double a_border{}; 
+    double c_border{};
+    double effect{}; 
     double power{};
     double beta{};
     bool first_draw;
