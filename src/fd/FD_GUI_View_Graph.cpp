@@ -31,20 +31,24 @@ void FD_GUI_View_Graph::draw_area(double left_border,
                                   double right_border,
                                   const std::vector<std::pair<double, double>> &point_list,
                                   int x_min_gdp,
+                                  int x_max_gdp,
                                   int y_max_gdp,
                                   int x_gds,
                                   int y_gds,
-                                  double x_amv,
+                                  double x_aminv,
+                                  double x_amaxv,
                                   double y_amv,
                                   double x_avi,
                                   double y_avi,
                                   double effect)
 {
     const double x_min_graph_draw_pos = static_cast<double>(x_min_gdp);
+    const double x_max_graph_draw_pos = static_cast<double>(x_max_gdp);
     const double y_max_graph_draw_pos = static_cast<double>(y_max_gdp);
     const double x_graph_draw_size = static_cast<double>(x_gds);
     const double y_graph_draw_size = static_cast<double>(y_gds);
-    const double x_axis_min_value = x_amv;
+    const double x_axis_min_value = x_aminv;
+    const double x_axis_max_value = x_amaxv;
     const double y_axis_min_value = y_amv;
     const double x_axis_value_interval = x_avi;
     const double y_axis_value_interval = y_avi;
@@ -57,10 +61,14 @@ void FD_GUI_View_Graph::draw_area(double left_border,
 
     for (size_t i = 0; i < point_list.size(); ++i)
     {
-        double x_val = point_list.at(i).first + effect / 80;
+        double x_val = point_list.at(i).first;
+        if (effect != 0)
+        {
+            x_val += effect / 80;
+        }
         double y_val = point_list.at(i).second;
 
-        if (x_val >= left_border && x_val <= right_border)
+        if (x_val >= left_border && x_val <= right_border && x_val <= x_axis_max_value)
         {
             double x = x_min_graph_draw_pos + std::round(x_graph_draw_size * ((x_val - x_axis_min_value) / x_axis_value_interval));
             double y = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((y_val - y_axis_min_value) / y_axis_value_interval));
@@ -139,13 +147,15 @@ void FD_GUI_View_Graph::draw()
     // TODO Zeichnung nach Rechts noch begrenzen
     fl_color(0, 0, 255);
     draw_area(c_border,
-              x_max_graph_draw_pos,
+              x_axis_max_value,
               point_list,
               x_min_graph_draw_pos,
+              x_max_graph_draw_pos,
               y_max_graph_draw_pos,
               x_graph_draw_size,
               y_graph_draw_size,
               x_axis_min_value,
+              x_axis_max_value,
               y_axis_min_value,
               x_axis_value_interval,
               y_axis_value_interval,
@@ -157,10 +167,12 @@ void FD_GUI_View_Graph::draw()
               a_border,
               point_list,
               x_min_graph_draw_pos,
+              x_max_graph_draw_pos,
               y_max_graph_draw_pos,
               x_graph_draw_size,
               y_graph_draw_size,
               x_axis_min_value,
+              x_axis_max_value,
               y_axis_min_value,
               x_axis_value_interval,
               y_axis_value_interval,
@@ -170,13 +182,15 @@ void FD_GUI_View_Graph::draw()
     // TODO Zeichnung nach Rechts noch begrenzen
     fl_color(255, 0, 0);
     draw_area(c_border,
-              x_max_graph_draw_pos,
+              x_axis_max_value,
               point_list,
               x_min_graph_draw_pos,
+              x_max_graph_draw_pos,
               y_max_graph_draw_pos,
               x_graph_draw_size,
               y_graph_draw_size,
               x_axis_min_value,
+              x_axis_max_value,
               y_axis_min_value,
               x_axis_value_interval,
               y_axis_value_interval,

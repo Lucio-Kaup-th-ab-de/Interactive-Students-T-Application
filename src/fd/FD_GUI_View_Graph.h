@@ -18,10 +18,12 @@ public:
                    double right_border,
                    const std::vector<std::pair<double, double>> &point_list,
                    int x_min_gdp,
+                   int x_max_gdp,
                    int y_max_gdp,
                    int x_gds,
                    int y_gds,
-                   double x_amv,
+                   double x_aminv,
+                   double x_amaxv,
                    double y_amv,
                    double x_avi,
                    double y_avi,
@@ -30,9 +32,9 @@ public:
 private:
     double find_y_value_for_x(const std::vector<std::pair<double, double>> &point_list, double x);
     std::vector<std::pair<double, double>> point_list{};
-    double a_border{}; 
+    double a_border{};
     double c_border{};
-    double effect{}; 
+    double effect{};
     double power{};
     double beta{};
     bool first_draw;
