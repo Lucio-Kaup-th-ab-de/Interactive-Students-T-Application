@@ -54,41 +54,47 @@ void FD_GUI_View_Graph::draw_area(double left_border,
     const double y_axis_value_interval = y_avi;
 
     fl_begin_polygon();
-    fl_vertex(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((left_border - x_axis_min_value) / x_axis_value_interval)), y_max_graph_draw_pos);
-    double left_border_y_val = find_y_value_for_x(point_list, left_border);
-    double left_border_y = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((left_border_y_val - y_axis_min_value) / y_axis_value_interval));
-    fl_vertex(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((left_border - x_axis_min_value) / x_axis_value_interval)), left_border_y);
-
-    for (size_t i = 0; i < point_list.size(); ++i)
+    if (left_border <= -5.0)
     {
-        double x_val = point_list.at(i).first;
-        if (effect != 0)
-        {
-            x_val += effect / 80;
-        }
-        double y_val = point_list.at(i).second;
+        left_border = -5.0;
+    }
+    fl_vertex(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((left_border - x_axis_min_value) / x_axis_value_interval)), y_max_graph_draw_pos); // Linke Untere Ecke der Fläche
+    double left_border_y_val = find_y_value_for_x(point_list, left_border - effect);
+    double left_border_y = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((left_border_y_val - y_axis_min_value) / y_axis_value_interval));
+    fl_vertex(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((left_border - x_axis_min_value) / x_axis_value_interval)), left_border_y); // Linke Obere Ecke der Fläche
 
-        if (x_val >= left_border && x_val <= right_border && x_val <= x_axis_max_value)
+    for (size_t i = 0; i < point_list.size(); i++)
+    {
+        if (point_list.at(i).first <= 7.5)
         {
-            double x = x_min_graph_draw_pos + std::round(x_graph_draw_size * ((x_val - x_axis_min_value) / x_axis_value_interval));
-            double y = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((y_val - y_axis_min_value) / y_axis_value_interval));
-            fl_vertex(x, y);
+            double x_val = point_list.at(i).first;
+            if (effect != 0)
+            {
+                x_val += effect / 80;
+            }
+            double y_val = point_list.at(i).second;
+
+            if (x_val >= left_border && x_val <= right_border && x_val <= x_axis_max_value)
+            {
+                double x = x_min_graph_draw_pos + std::round(x_graph_draw_size * ((x_val - x_axis_min_value) / x_axis_value_interval));
+                double y = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((y_val - y_axis_min_value) / y_axis_value_interval));
+                fl_vertex(x, y);
+            }
         }
     }
-
     fl_vertex(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((right_border - x_axis_min_value) / x_axis_value_interval)), y_max_graph_draw_pos);
     fl_end_polygon();
 }
 
 void FD_GUI_View_Graph::draw()
 {
-    // TODO Reihenfolge der Zeichnung noch so anpassen, dass alles übersichtlich ist
+    // TODO Reihenfolge der Zeichnung noch final so anpassen, dass alles übersichtlich ist
     // TODO Startwert vom Effekt noch anpassen
     // TODO Farben der Flächen anpassen
-    fl_antialias(1);
+    fl_antialias(1); //* Kann optional zur Kantenglättung verwendet werden (1) verringert allerdings die Performance des Programms
     const int axis_space{60};
     const int x_left = x(), y_up = y();
-    const int x_right = x() + w() - 1, y_down = y() + h() - 1;
+    const int x_right = x() + w() - 0, y_down = y() + h() - 1;
     const int x_min_graph_draw_pos = x_left + axis_space;
     const int x_max_graph_draw_pos = x_right - axis_space; // ! vllt macht const hier noch Probleme
     const int y_min_graph_draw_pos = y_up + axis_space;
@@ -105,6 +111,74 @@ void FD_GUI_View_Graph::draw()
     // draw graph background area
     fl_color(FL_WHITE);
     fl_rectf(x(), y(), w() + axis_space, h());
+
+    // *Flächenzeichnungen
+    // Power Fläche
+    fl_color(51, 204, 255);
+    draw_area(c_border - 0.2,
+              x_axis_max_value,
+              point_list,
+              x_min_graph_draw_pos,
+              x_max_graph_draw_pos,
+              y_max_graph_draw_pos,
+              x_graph_draw_size,
+              y_graph_draw_size,
+              x_axis_min_value,
+              x_axis_max_value,
+              y_axis_min_value,
+              x_axis_value_interval,
+              y_axis_value_interval,
+              effect);
+    // Beta Fläche
+    fl_color(153, 51, 255);
+    draw_area(a_border,
+              c_border + 0.01,
+              point_list,
+              x_min_graph_draw_pos,
+              x_max_graph_draw_pos,
+              y_max_graph_draw_pos,
+              x_graph_draw_size,
+              y_graph_draw_size,
+              x_axis_min_value,
+              x_axis_max_value,
+              y_axis_min_value,
+              x_axis_value_interval,
+              y_axis_value_interval,
+              effect);
+    // Linke Alpha Fläche
+    fl_color(255, 110, 110);
+    draw_area(-5.0,
+              a_border,
+              point_list,
+              x_min_graph_draw_pos,
+              x_max_graph_draw_pos,
+              y_max_graph_draw_pos,
+              x_graph_draw_size,
+              y_graph_draw_size,
+              x_axis_min_value,
+              x_axis_max_value,
+              y_axis_min_value,
+              x_axis_value_interval,
+              y_axis_value_interval,
+              0);
+
+    // Rechte Alpha Fläche
+    // TODO Kleines Artefakt an der Grenze entfernen
+    fl_color(255, 110, 110);
+    draw_area(c_border,
+              x_axis_max_value,
+              point_list,
+              x_min_graph_draw_pos,
+              x_max_graph_draw_pos,
+              y_max_graph_draw_pos,
+              x_graph_draw_size,
+              y_graph_draw_size,
+              x_axis_min_value,
+              x_axis_max_value,
+              y_axis_min_value,
+              x_axis_value_interval,
+              y_axis_value_interval,
+              0);
 
     // *Verteilung eins
 
@@ -137,64 +211,10 @@ void FD_GUI_View_Graph::draw()
             int y_end = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((point_list.at(i + 1).second - y_axis_min_value) / y_axis_value_interval));
             if (x_start >= x_min_graph_draw_pos - effect && x_end <= x_max_graph_draw_pos - effect)
             {
-                fl_line(x_start + effect, y_start, x_end + effect, y_end);
+                fl_line(x_start + effect + 3, y_start, x_end + effect + 3, y_end);
             }
         }
     }
-
-    // *Flächenzeichnungen
-    // Power Fläche
-    // TODO Zeichnung nach Rechts noch begrenzen
-    fl_color(0, 0, 255);
-    draw_area(c_border,
-              x_axis_max_value,
-              point_list,
-              x_min_graph_draw_pos,
-              x_max_graph_draw_pos,
-              y_max_graph_draw_pos,
-              x_graph_draw_size,
-              y_graph_draw_size,
-              x_axis_min_value,
-              x_axis_max_value,
-              y_axis_min_value,
-              x_axis_value_interval,
-              y_axis_value_interval,
-              effect);
-    // Linke Alpha Fläche
-    // TODO Funktioniert noch nicht
-    fl_color(255, 0, 0);
-    draw_area(x_min_graph_draw_pos,
-              a_border,
-              point_list,
-              x_min_graph_draw_pos,
-              x_max_graph_draw_pos,
-              y_max_graph_draw_pos,
-              x_graph_draw_size,
-              y_graph_draw_size,
-              x_axis_min_value,
-              x_axis_max_value,
-              y_axis_min_value,
-              x_axis_value_interval,
-              y_axis_value_interval,
-              effect);
-
-    // Rechte Alpha Fläche
-    // TODO Zeichnung nach Rechts noch begrenzen
-    fl_color(255, 0, 0);
-    draw_area(c_border,
-              x_axis_max_value,
-              point_list,
-              x_min_graph_draw_pos,
-              x_max_graph_draw_pos,
-              y_max_graph_draw_pos,
-              x_graph_draw_size,
-              y_graph_draw_size,
-              x_axis_min_value,
-              x_axis_max_value,
-              y_axis_min_value,
-              x_axis_value_interval,
-              y_axis_value_interval,
-              0);
 
     // *Fehlergrenzen
     fl_color(100, 100, 100);
@@ -205,7 +225,7 @@ void FD_GUI_View_Graph::draw()
     // fl_yxline(x_min_graph_draw_pos - 1 + std::round(x_graph_draw_size * ((a_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
     //   c Grenze
     fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
-    fl_yxline(x_min_graph_draw_pos + 1 + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
+    fl_yxline(x_min_graph_draw_pos - 1 + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
 
     // *draw axes
     // draw Scale
@@ -247,16 +267,29 @@ void FD_GUI_View_Graph::draw()
 // private
 double FD_GUI_View_Graph::find_y_value_for_x(const std::vector<std::pair<double, double>> &point_list, double x)
 {
-    for (size_t i = 1; i < point_list.size(); ++i) // Iteriert über die Point list bis zum angegebenen x-Wert
+    for (size_t i = 1; i < point_list.size(); i++)
     {
         if (point_list[i].first >= x)
         {
-            double x1 = point_list[i - 1].first;
-            double y1 = point_list[i - 1].second;
-            double x2 = point_list[i].first;
-            double y2 = point_list[i].second;
-            double t = (x - x1) / (x2 - x1); // Berechnet den relativen Abstand des gesuchten X-Wertes zwischen den beiden X-Werten der point_list
-            return y1 + t * (y2 - y1);       // wendet den zuvor berechneten Wert auf y an
+            size_t nearest_index;
+
+            if (point_list[i].first - x < x - point_list[i - 1].first)
+            {
+                nearest_index = i;
+            }
+            else
+            {
+                nearest_index = i - 1;
+            }
+
+            if (nearest_index > 0)
+            {
+                return point_list[nearest_index - 1].second;
+            }
+            else
+            {
+                return point_list[0].second;
+            }
         }
     }
     return 0;

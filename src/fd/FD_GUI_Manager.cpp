@@ -50,6 +50,7 @@ void FD_GUI_Manager::update_view_graph_diagram(const std::vector<std::pair<doubl
 
 void FD_GUI_Manager::update_outputs(double power, double beta)
 {
+    // TODO Werte noch runden, damit sie in das Ausgabe Feld passen (max. 5 Nachkommastellen)
     view_window_graph->set_power(power);
     view_window_graph->set_beta(beta);
 }

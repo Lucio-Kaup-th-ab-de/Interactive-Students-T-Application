@@ -8,6 +8,8 @@
 using namespace std;
 
 int main() {
+    //TODO Achsenbeschriftung noch anpassen
+    //TODO Nutzungshinweis
     FD_GUI_Manager gui_manager{}; 
 
     IA_Graph_Creation_Presenter_GUI graph_creation_presenter{gui_manager};
