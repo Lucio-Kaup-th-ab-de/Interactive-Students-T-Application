@@ -91,7 +91,12 @@ void FD_GUI_View_Graph::draw()
     // TODO Reihenfolge der Zeichnung noch final so anpassen, dass alles übersichtlich ist
     // TODO Startwert vom Effekt noch anpassen
     // TODO Farben der Flächen anpassen
+    // Einstellungen
     fl_antialias(1); //* Kann optional zur Kantenglättung verwendet werden (1) verringert allerdings die Performance des Programms
+    int graph_line_width = 2;
+    int axis_line_width = 2;
+
+    // Zeichenwerte
     const int axis_space{60};
     const int x_left = x(), y_up = y();
     const int x_right = x() + w() - 0, y_down = y() + h() - 1;
@@ -114,7 +119,7 @@ void FD_GUI_View_Graph::draw()
 
     // *Flächenzeichnungen
     // Power Fläche
-    fl_color(51, 204, 255);
+    fl_color(51, 153, 255);
     draw_area(c_border - 0.2,
               x_axis_max_value,
               point_list,
@@ -181,7 +186,7 @@ void FD_GUI_View_Graph::draw()
               0);
 
     // *Verteilung eins
-
+    fl_line_style(FL_SOLID, graph_line_width);
     if ((point_list.size() > 0) && ((point_list.size() % 2) == 1))
     {
 
@@ -221,13 +226,12 @@ void FD_GUI_View_Graph::draw()
 
     // a Grenze
     fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((a_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
-    fl_yxline(x_min_graph_draw_pos + 1 + std::round(x_graph_draw_size * ((a_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
     // fl_yxline(x_min_graph_draw_pos - 1 + std::round(x_graph_draw_size * ((a_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
     //   c Grenze
     fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
-    fl_yxline(x_min_graph_draw_pos - 1 + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
 
     // *draw axes
+    fl_line_style(FL_SOLID, axis_line_width); 
     // draw Scale
     fl_color(FL_BLACK);
     // graph y axis

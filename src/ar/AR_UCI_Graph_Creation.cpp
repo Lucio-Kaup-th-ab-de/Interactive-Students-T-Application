@@ -1,4 +1,5 @@
 #include "AR_UCI_Graph_Creation.h"
+#include <cmath>
 
 AR_UCI_Graph_Creation::AR_UCI_Graph_Creation(
     AR_UCI_Graph_Creation_OB &presenter,
@@ -19,8 +20,8 @@ void AR_UCI_Graph_Creation::create_graph(int df, double alpha, double input_effe
   c_border = stat_util.students_t_quantile(1 - alpha / 2, df);
 
   // Runde a_border und c_border auf 0,1, damit die Flächen besser an die Grenzen anschließen
-  a_border = round(a_border * 10) / 10.0;
-  c_border = round(c_border * 10) / 10.0;
+  a_border = std::round(a_border * 10) / 10.0;
+  c_border = std::round(c_border * 10) / 10.0;
 
   effect = input_effect;
 
@@ -29,6 +30,10 @@ void AR_UCI_Graph_Creation::create_graph(int df, double alpha, double input_effe
   double t_shifted = (t_critical * sqrt(df) - (effect / 80) * sqrt(df + 1)) / sqrt(df);
   power = 1 - stat_util.students_t_cdf(t_shifted, df);
   beta = 1 - power;
+  // Runden auf 5 Nachkommastellen
+  double factor = std::pow(10,5); // Die 5 legt die Nachkommastellen fest
+  power = std::round(power * factor) / factor;
+  beta = std::round(beta * factor) / factor;
 
   graph_presenter.present_graph(point_list, a_border, c_border, effect, power, beta);
   graph_presenter.present_outputs(power, beta);
