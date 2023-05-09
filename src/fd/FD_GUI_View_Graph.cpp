@@ -58,6 +58,10 @@ void FD_GUI_View_Graph::draw_area(double left_border,
     {
         left_border = -5.0;
     }
+    if (right_border <= -5.0)
+    {
+        right_border = -5.0;
+    }
     fl_vertex(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((left_border - x_axis_min_value) / x_axis_value_interval)), y_max_graph_draw_pos); // Linke Untere Ecke der Fläche
     double left_border_y_val = find_y_value_for_x(point_list, left_border - effect);
     double left_border_y = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((left_border_y_val - y_axis_min_value) / y_axis_value_interval));
@@ -90,7 +94,7 @@ void FD_GUI_View_Graph::draw()
 {
     // TODO Reihenfolge der Zeichnung noch final so anpassen, dass alles übersichtlich ist
     // TODO Startwert vom Effekt noch anpassen
-    // TODO Farben der Flächen anpassen
+    // TODO Farben der Flächen verbessern
     // Einstellungen
     fl_antialias(1); //* Kann optional zur Kantenglättung verwendet werden (1) verringert allerdings die Performance des Programms
     int graph_line_width = 2;
