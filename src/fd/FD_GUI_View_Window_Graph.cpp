@@ -9,7 +9,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     this->begin();
     graph_label = std::make_unique<Fl_Box>(150, 35, 900, 40, "Interactive Visualization of Student's t-Distributions for Sample Size Planning");
     graph_label->labelfont(FL_BOLD);
-    graph_label->labelsize(20);
+    graph_label->labelsize(22);
 
     // DF Output
     output_degrees_of_freedom = std::make_unique<Fl_Value_Output>(780, 530, 30, 25);
@@ -20,9 +20,9 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
 
     // ! Weitere Outputs; evtl irgendwie anders die Pointer initialisieren
     output_effect = std::make_unique<Fl_Value_Output>(2000, 530, 60, 40);
-    output_effect->value(100); // Startwert
+    output_effect->value(2.5*80); // Startwert
     output_alpha = std::make_unique<Fl_Value_Output>(2000, 630, 60, 40);
-    output_alpha->value(0.1); // Startwert
+    output_alpha->value(0.05); // Startwert
 
     // Mean 1 Output
     output_mean_1 = std::make_unique<Fl_Value_Output>(1130, 530, 35, 25);

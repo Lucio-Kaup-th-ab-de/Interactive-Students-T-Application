@@ -34,8 +34,6 @@ public:
 private:
     std::unique_ptr<FD_GUI_View_Window_Graph> view_window_graph;
     IA_Graph_Creation_Controller_GUI *graph_creation_controller;
-    const int df_min_value{1};
-    const int df_max_value{10};
     void gui_cb_df_slider_callback(Fl_Widget *w);
     void gui_cb_effect_slider_callback(Fl_Widget *w);
     void gui_cb_alpha_slider_callback(Fl_Widget *w);
