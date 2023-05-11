@@ -96,8 +96,8 @@ void FD_GUI_View_Graph::draw()
     // TODO Startwert vom Effekt noch anpassen
     // TODO Farben der Flächen verbessern
     // Einstellungen
-    fl_antialias(1); //* Kann optional zur Kantenglättung verwendet werden (1) verringert allerdings die Performance des Programms
-    int graph_line_width = 2;
+    fl_antialias(0); //* Kann optional zur Kantenglättung verwendet werden (1) verringert allerdings die Performance des Programms
+    int graph_line_width = 3;
     int axis_line_width = 2;
 
     // Zeichenwerte
@@ -123,7 +123,7 @@ void FD_GUI_View_Graph::draw()
 
     // *Flächenzeichnungen
     // Power Fläche
-    fl_color(51, 153, 255);
+    fl_color(0, 139, 139);
     draw_area(c_border - 0.2,
               x_axis_max_value,
               point_list,
@@ -138,24 +138,9 @@ void FD_GUI_View_Graph::draw()
               x_axis_value_interval,
               y_axis_value_interval,
               effect);
-    // Beta Fläche
-    fl_color(153, 51, 255);
-    draw_area(a_border,
-              c_border + 0.01,
-              point_list,
-              x_min_graph_draw_pos,
-              x_max_graph_draw_pos,
-              y_max_graph_draw_pos,
-              x_graph_draw_size,
-              y_graph_draw_size,
-              x_axis_min_value,
-              x_axis_max_value,
-              y_axis_min_value,
-              x_axis_value_interval,
-              y_axis_value_interval,
-              effect);
+
     // Linke Alpha Fläche
-    fl_color(255, 110, 110);
+    fl_color(231, 84, 128);
     draw_area(-5.0,
               a_border,
               point_list,
@@ -173,7 +158,7 @@ void FD_GUI_View_Graph::draw()
 
     // Rechte Alpha Fläche
     // TODO Kleines Artefakt an der Grenze entfernen
-    fl_color(255, 110, 110);
+    fl_color(231, 84, 128);
     draw_area(c_border,
               x_axis_max_value,
               point_list,
@@ -188,6 +173,23 @@ void FD_GUI_View_Graph::draw()
               x_axis_value_interval,
               y_axis_value_interval,
               0);
+
+    // Beta Fläche
+    fl_color(153, 0, 204);
+    draw_area(-5.0,
+              c_border + 0.01,
+              point_list,
+              x_min_graph_draw_pos,
+              x_max_graph_draw_pos,
+              y_max_graph_draw_pos,
+              x_graph_draw_size,
+              y_graph_draw_size,
+              x_axis_min_value,
+              x_axis_max_value,
+              y_axis_min_value,
+              x_axis_value_interval,
+              y_axis_value_interval,
+              effect);
 
     // *Verteilung eins
     fl_line_style(FL_SOLID, graph_line_width);
