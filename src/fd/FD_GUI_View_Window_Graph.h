@@ -52,8 +52,6 @@ private:
     std::unique_ptr<Fl_Value_Output> output_mean_2;
     std::unique_ptr<Fl_Value_Output> output_beta;
     std::unique_ptr<Fl_Value_Output> output_power;
-    // std::unique_ptr<Fl_Button> up_button;
-    // std::unique_ptr<Fl_Button> down_button;
     std::unique_ptr<Fl_Value_Slider> df_v_slider;
     std::unique_ptr<Fl_Value_Slider> e_v_slider;
     std::unique_ptr<Fl_Value_Slider> a_v_slider;

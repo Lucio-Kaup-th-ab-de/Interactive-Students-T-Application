@@ -30,9 +30,8 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     output_mean_1->labelcolor(fl_rgb_color(255, 0, 0));
     output_mean_1->textcolor(fl_rgb_color(255, 0, 0));
     output_mean_1->value(0);
-    output_mean_1->textsize(18);
-    output_mean_1->labelsize(18);
-
+    output_mean_1->textsize(18); // Größe der Zahl
+    output_mean_1->labelsize(18); // Größe des labels
 
     // Mean 2 Output
     output_mean_2 = std::make_unique<Fl_Value_Output>(1130, 560, 35, 25);
@@ -42,8 +41,6 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     output_mean_2->value(2.5);
     output_mean_2->textsize(18);
     output_mean_2->labelsize(18);
-
-
 
     // Beta Niveau Output
     output_beta = std::make_unique<Fl_Value_Output>(940, 530, 75, 25);

@@ -54,6 +54,8 @@ void FD_GUI_View_Graph::draw_area(double left_border,
     const double y_axis_value_interval = y_avi;
 
     fl_begin_polygon();
+    // Begrenzungen, falls die Grenzen außerhalb des Graphen liegen
+    //links
     if (left_border <= -5.0)
     {
         left_border = -5.0;
@@ -61,6 +63,15 @@ void FD_GUI_View_Graph::draw_area(double left_border,
     if (right_border <= -5.0)
     {
         right_border = -5.0;
+    }
+    //rechts
+    if (left_border >= 7.5)
+    {
+        left_border = 7.5;
+    }
+    if (right_border >= 7.5)
+    {
+        right_border = 7.5;
     }
     fl_vertex(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((left_border - x_axis_min_value) / x_axis_value_interval)), y_max_graph_draw_pos); // Linke Untere Ecke der Fläche
     double left_border_y_val = find_y_value_for_x(point_list, left_border - effect);
@@ -96,7 +107,7 @@ void FD_GUI_View_Graph::draw()
     // TODO Startwert vom Effekt noch anpassen
     // TODO Farben der Flächen verbessern
     // Einstellungen
-    fl_antialias(0); //* Kann optional zur Kantenglättung verwendet werden (1) verringert allerdings die Performance des Programms
+    fl_antialias(1); //* Kann optional zur Kantenglättung verwendet werden (1) verringert allerdings die Performance des Programms
     int graph_line_width = 3;
     int axis_line_width = 2;
 
@@ -232,9 +243,17 @@ void FD_GUI_View_Graph::draw()
 
     // a Grenze
     fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((a_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
-    // fl_yxline(x_min_graph_draw_pos - 1 + std::round(x_graph_draw_size * ((a_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
     //   c Grenze
     fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)), y_min_graph_draw_pos, y_max_graph_draw_pos);
+
+    // *Weitere Achsenbeschriftungen:
+    // Power und Beta
+    fl_color(200, 200, 200);
+    fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)), y_max_graph_draw_pos, y_max_graph_draw_pos + 50);
+    fl_color(153, 0, 204);
+    fl_draw("Beta",x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)) - 40, y_max_graph_draw_pos + 50);
+    fl_color(0, 139, 139);
+    fl_draw("Power",x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)) + 10, y_max_graph_draw_pos + 50);
 
     // *draw axes
     fl_line_style(FL_SOLID, axis_line_width); 
@@ -244,7 +263,7 @@ void FD_GUI_View_Graph::draw()
     fl_line(x_min_graph_draw_pos, y_min_graph_draw_pos, x_min_graph_draw_pos, y_max_graph_draw_pos);
     // graph x axis
     fl_line(x_min_graph_draw_pos, y_max_graph_draw_pos, x_max_graph_draw_pos, y_max_graph_draw_pos);
-    const int scale_fontsize = 12;
+    const int scale_fontsize = 14;
     fl_font(FL_HELVETICA, scale_fontsize);
     // x-Scale
     const double x_scale_interval{x_axis_value_interval / 20};
@@ -255,10 +274,10 @@ void FD_GUI_View_Graph::draw()
         std::stringstream ss;
         ss << std::fixed << std::setprecision(1) << value;
         std::string value_str = ss.str();
-        fl_draw(value_str.c_str(), x_position - 8, y_max_graph_draw_pos + scale_fontsize + 5);
+        fl_draw(value_str.c_str(), x_position - 8, y_max_graph_draw_pos + scale_fontsize + 7);
     }
     // x-axis label
-    fl_draw("X-Achse", x_max_graph_draw_pos, y_max_graph_draw_pos + 30);
+    fl_draw("X-Achse", x_max_graph_draw_pos, y_max_graph_draw_pos + 40);
     // y-Scale
     const double y_scale_interval{y_axis_value_interval / 10};
     for (double value = y_axis_min_value; value <= y_axis_max_value + 0.01; value += y_scale_interval)
@@ -268,7 +287,7 @@ void FD_GUI_View_Graph::draw()
         std::stringstream ss;
         ss << std::fixed << std::setprecision(2) << value;
         std::string value_str = ss.str();
-        fl_draw(value_str.c_str(), x_min_graph_draw_pos - 20 - scale_fontsize, y_position + 5);
+        fl_draw(value_str.c_str(), x_min_graph_draw_pos - 24 - scale_fontsize, y_position + 5);
     }
     // y-axis label
     fl_draw("Y-Achse", x_min_graph_draw_pos - 50, y_min_graph_draw_pos - 20);
