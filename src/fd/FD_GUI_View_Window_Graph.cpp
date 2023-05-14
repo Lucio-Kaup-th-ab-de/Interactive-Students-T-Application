@@ -7,7 +7,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     : Fl_Window(x, y, width, height, title)
 {
     this->begin();
-    graph_label = std::make_unique<Fl_Box>(-25, 20, 900, 40, "Interactive Visualization of Student's t-Distributions for Sample Size Planning");
+    graph_label = std::make_unique<Fl_Box>(-30, 20, 900, 40, "Interactive Visualization of Student's t-Distributions for Sample Size Planning");
     graph_label->labelfont(FL_BOLD);
     graph_label->labelsize(20);
 
