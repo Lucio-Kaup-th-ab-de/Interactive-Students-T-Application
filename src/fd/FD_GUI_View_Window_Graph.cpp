@@ -20,7 +20,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
 
     // ! Weitere Outputs; evtl irgendwie anders die Pointer initialisieren
     output_effect = std::make_unique<Fl_Value_Output>(2000, 530, 60, 40);
-    output_effect->value(2.5*80); // Startwert
+    output_effect->value(2.5 * 80); // Startwert
     output_alpha = std::make_unique<Fl_Value_Output>(2000, 630, 60, 40);
     output_alpha->value(0.05); // Startwert
 
@@ -30,7 +30,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     output_mean_1->labelcolor(fl_rgb_color(255, 0, 0));
     output_mean_1->textcolor(fl_rgb_color(255, 0, 0));
     output_mean_1->value(0);
-    output_mean_1->textsize(18); // Größe der Zahl
+    output_mean_1->textsize(18);  // Größe der Zahl
     output_mean_1->labelsize(18); // Größe des labels
 
     // Mean 2 Output
@@ -54,7 +54,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     // Power Output
     output_power = std::make_unique<Fl_Value_Output>(940, 560, 75, 25);
     output_power->label("Power");
-    output_power->labelcolor(fl_rgb_color(0, 139, 139)); 
+    output_power->labelcolor(fl_rgb_color(0, 139, 139));
     output_power->textcolor(fl_rgb_color(0, 139, 139));
     output_power->value(0);
     output_power->textsize(18);
@@ -66,7 +66,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     df_v_slider->range(1.0, 10.0);         // Wertebereich des Sliders
     df_v_slider->step(1.0);                // Schrittweite
     df_v_slider->value(5.0);               // Startwert
-    df_v_slider->textsize(16);             //Schriftgröße
+    df_v_slider->textsize(16);             // Schriftgröße
     df_v_slider->callback(FD_GUI_Manager::static_gui_cb_df_slider_callback, ui_pointer_for_callbacks);
 
     // Effect Slider
@@ -75,7 +75,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     e_v_slider->range(0, 5.0);            // Wertebereich des Sliders
     e_v_slider->step(0.1);                // Schrittweite
     e_v_slider->value(2.5);               // Startwert
-    e_v_slider->textsize(16);             //Schriftgröße
+    e_v_slider->textsize(16);             // Schriftgröße
     e_v_slider->callback(FD_GUI_Manager::static_gui_cb_effect_slider_callback, ui_pointer_for_callbacks);
 
     // Alpha Slider
@@ -84,8 +84,13 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     a_v_slider->range(0.01, 0.5);         // Wertebereich des Sliders
     a_v_slider->step(0.01);               // Schrittweite
     a_v_slider->value(0.05);              // Startwert
-    a_v_slider->textsize(14);             //Schriftgröße
+    a_v_slider->textsize(14);             // Schriftgröße
     a_v_slider->callback(FD_GUI_Manager::static_gui_cb_alpha_slider_callback, ui_pointer_for_callbacks);
+
+    // Checkbox for Antialiasing
+    antialiasing_checkbox = std::make_unique<Fl_Check_Button>(440, 530, 120, 20, "Antialiasing");
+    antialiasing_checkbox->value(1); // Startwert (checked or not, 1 means checked)
+    // TODO #Anti Callback einbauen
 
     graph = std::make_unique<FD_GUI_View_Graph>(5, 80, 1130, 425, "");
     this->end();
@@ -111,7 +116,7 @@ void FD_GUI_View_Window_Graph::set_mean_2(double m_2)
     output_mean_2->value(m_2);
 }
 
-//TODO Power und Beta hier evtl wieder entfernen
+// TODO Power und Beta hier evtl wieder entfernen
 void FD_GUI_View_Window_Graph::set_beta(double beta)
 {
     output_beta->value(beta);

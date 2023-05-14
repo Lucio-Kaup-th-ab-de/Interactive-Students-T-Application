@@ -10,6 +10,7 @@
 // #include <FL/Fl_PNG_Image.H>
 #include <Fl/Fl_Value_Slider.H>
 #include <FL/Fl_Value_Output.H>
+#include <FL/Fl_Check_button.H>
 #include "FD_GUI_View_Graph.h"
 
 class FD_GUI_View_Window_Graph : public Fl_Window
@@ -55,5 +56,6 @@ private:
     std::unique_ptr<Fl_Value_Slider> df_v_slider;
     std::unique_ptr<Fl_Value_Slider> e_v_slider;
     std::unique_ptr<Fl_Value_Slider> a_v_slider;
+    std::unique_ptr<Fl_Check_Button> antialiasing_checkbox;
 };
 #endif /* FD_GUI_VIEW_WINDOW_GRAPH_H */

@@ -55,7 +55,7 @@ void FD_GUI_View_Graph::draw_area(double left_border,
 
     fl_begin_polygon();
     // Begrenzungen, falls die Grenzen außerhalb des Graphen liegen
-    //links
+    // links
     if (left_border <= -5.0)
     {
         left_border = -5.0;
@@ -64,7 +64,7 @@ void FD_GUI_View_Graph::draw_area(double left_border,
     {
         right_border = -5.0;
     }
-    //rechts
+    // rechts
     if (left_border >= 7.5)
     {
         left_border = 7.5;
@@ -107,6 +107,7 @@ void FD_GUI_View_Graph::draw()
     // TODO Startwert vom Effekt noch anpassen
     // TODO Farben der Flächen verbessern
     // Einstellungen
+    // TODO #Anti übergebenen Wert eingeben
     fl_antialias(1); //* Kann optional zur Kantenglättung verwendet werden (1) verringert allerdings die Performance des Programms
     int graph_line_width = 3;
     int axis_line_width = 2;
@@ -251,12 +252,12 @@ void FD_GUI_View_Graph::draw()
     fl_color(200, 200, 200);
     fl_yxline(x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)), y_max_graph_draw_pos, y_max_graph_draw_pos + 50);
     fl_color(153, 0, 204);
-    fl_draw("Beta",x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)) - 40, y_max_graph_draw_pos + 50);
+    fl_draw("Beta", x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)) - 40, y_max_graph_draw_pos + 50);
     fl_color(0, 139, 139);
-    fl_draw("Power",x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)) + 10, y_max_graph_draw_pos + 50);
+    fl_draw("Power", x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)) + 10, y_max_graph_draw_pos + 50);
 
     // *draw axes
-    fl_line_style(FL_SOLID, axis_line_width); 
+    fl_line_style(FL_SOLID, axis_line_width);
     // draw Scale
     fl_color(FL_BLACK);
     // graph y axis

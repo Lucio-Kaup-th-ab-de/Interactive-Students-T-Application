@@ -96,3 +96,16 @@ void FD_GUI_Manager::static_gui_cb_alpha_slider_callback(Fl_Widget *w, void *f)
 {
     ((FD_GUI_Manager *)f)->gui_cb_alpha_slider_callback(w);
 }
+
+// Antialiasing Checkbox
+void FD_GUI_Manager::gui_cb_antialiasing_checkbox_callback(Fl_Widget *w)
+{
+    Fl_Check_Button *checkbox = (Fl_Check_Button *)w;
+    int checked = checkbox->value();
+    // TODO #Anti view window graph und graph creation noch einbinden
+}
+
+void FD_GUI_Manager::static_gui_cb_antialiasing_checkbox_callback(Fl_Widget *w, void *f)
+{
+    ((FD_GUI_Manager *)f)->gui_cb_antialiasing_checkbox_callback(w);
+}
