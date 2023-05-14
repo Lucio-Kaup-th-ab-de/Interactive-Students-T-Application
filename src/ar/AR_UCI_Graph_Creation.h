@@ -11,7 +11,7 @@ public:
     AR_UCI_Graph_Creation(
         AR_UCI_Graph_Creation_OB &presenter,
         AR_STAT_Util_I &s);
-    void create_graph(int df, double alpha, double input_effect);
+    void create_graph(int df, double alpha, double input_effect, int aa);
 
 private:
     AR_UCI_Graph_Creation_OB &graph_presenter;

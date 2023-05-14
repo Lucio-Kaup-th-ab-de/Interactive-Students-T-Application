@@ -5,7 +5,7 @@
 class AR_UCI_Graph_Creation_IB
 {
 public:
-   virtual void create_graph(int df, double alpha, double effect) = 0;
+   virtual void create_graph(int df, double alpha, double effect, int aa) = 0;
 
    virtual ~AR_UCI_Graph_Creation_IB() = default;
    AR_UCI_Graph_Creation_IB() = default;

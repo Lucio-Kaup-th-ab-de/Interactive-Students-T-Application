@@ -6,8 +6,9 @@ AR_UCI_Graph_Creation::AR_UCI_Graph_Creation(
     AR_STAT_Util_I &s)
     : graph_presenter(presenter), stat_util(s){};
 
-void AR_UCI_Graph_Creation::create_graph(int df, double alpha, double input_effect)
+void AR_UCI_Graph_Creation::create_graph(int df, double alpha, double input_effect, int aa)
 {
+  int antialias = aa;
   std::vector<std::pair<double, double>> point_list{};
   for (double x = -10.0; x <= 10.0; x += 0.1)
   {
@@ -31,10 +32,10 @@ void AR_UCI_Graph_Creation::create_graph(int df, double alpha, double input_effe
   power = 1 - stat_util.students_t_cdf(t_shifted, df);
   beta = 1 - power;
   // Runden auf 5 Nachkommastellen
-  double factor = std::pow(10,5); // Die 5 legt die Nachkommastellen fest
+  double factor = std::pow(10, 5); // Die 5 legt die Nachkommastellen fest
   power = std::round(power * factor) / factor;
   beta = std::round(beta * factor) / factor;
 
-  graph_presenter.present_graph(point_list, a_border, c_border, effect, power, beta);
+  graph_presenter.present_graph(point_list, a_border, c_border, effect, power, beta, antialias);
   graph_presenter.present_outputs(power, beta);
 };

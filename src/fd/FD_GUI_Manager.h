@@ -20,11 +20,13 @@ public:
                                    double c_border,
                                    double effect,
                                    double power,
-                                   double beta) override;
+                                   double beta,
+                                   int antialias) override;
     void update_outputs(double power, double beta) override;
     int get_df_value() override;
     double get_effect() override;
     double get_alpha() override;
+    int get_antialias() override;
     void set_graph_creation_controller(IA_Graph_Creation_Controller_GUI *gc_c);
 
     static void static_gui_cb_df_slider_callback(Fl_Widget *w, void *f);

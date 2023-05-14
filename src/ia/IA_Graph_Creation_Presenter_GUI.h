@@ -15,7 +15,8 @@ public:
                        double c_border,
                        double effect,
                        double power,
-                       double beta);
+                       double beta,
+                       int antialias);
     void present_outputs(double power, double beta);
 
 private:

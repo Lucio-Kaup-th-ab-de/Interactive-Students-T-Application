@@ -13,7 +13,8 @@ public:
                         double c_b,
                         double ef,
                         double p,
-                        double b);
+                        double b,
+                        int aa);
     void draw_area(double left_border,
                    double right_border,
                    const std::vector<std::pair<double, double>> &point_list,
@@ -37,6 +38,7 @@ private:
     double effect{};
     double power{};
     double beta{};
+    int antialias{};
     bool first_draw;
 };
 

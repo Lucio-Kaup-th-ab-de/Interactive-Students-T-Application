@@ -12,11 +12,13 @@ public:
                                           double c_border,
                                           double effect,
                                           double power,
-                                          double beta) = 0;
-   virtual void update_outputs(double power, double beta) = 0;                                         
+                                          double beta,
+                                          int antialias) = 0;
+   virtual void update_outputs(double power, double beta) = 0;
    virtual int get_df_value() = 0;
    virtual double get_effect() = 0;
    virtual double get_alpha() = 0;
+   virtual int get_antialias() = 0;
    virtual ~IA_GUI_Manager_I() = default;
    IA_GUI_Manager_I() = default;
    IA_GUI_Manager_I(const IA_GUI_Manager_I &) = default;

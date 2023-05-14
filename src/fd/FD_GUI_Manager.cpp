@@ -33,19 +33,26 @@ double FD_GUI_Manager::get_alpha()
     return view_window_graph->get_alpha();
 }
 
+int FD_GUI_Manager::get_antialias()
+{
+    return view_window_graph->get_antialias();
+}
+
 void FD_GUI_Manager::update_view_graph_diagram(const std::vector<std::pair<double, double>> &point_list,
                                                double a_border,
                                                double c_border,
                                                double effect,
                                                double power,
-                                               double beta)
+                                               double beta,
+                                               int antialias)
 {
     view_window_graph->update_graph(point_list,
                                     a_border,
                                     c_border,
                                     effect,
                                     power,
-                                    beta);
+                                    beta,
+                                    antialias);
 }
 
 void FD_GUI_Manager::update_outputs(double power, double beta)
@@ -103,6 +110,8 @@ void FD_GUI_Manager::gui_cb_antialiasing_checkbox_callback(Fl_Widget *w)
     Fl_Check_Button *checkbox = (Fl_Check_Button *)w;
     int checked = checkbox->value();
     // TODO #Anti view window graph und graph creation noch einbinden
+    view_window_graph->set_antialias(checked);
+    graph_creation_controller->control_graph_creation();
 }
 
 void FD_GUI_Manager::static_gui_cb_antialiasing_checkbox_callback(Fl_Widget *w, void *f)

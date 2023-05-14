@@ -12,7 +12,8 @@ public:
                               double c_border,
                               double effect,
                               double power,
-                              double beta) = 0;
+                              double beta,
+                              int antialias) = 0;
 
    virtual void present_outputs(double power, double beta) = 0;
 

@@ -23,6 +23,8 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     output_effect->value(2.5 * 80); // Startwert
     output_alpha = std::make_unique<Fl_Value_Output>(2000, 630, 60, 40);
     output_alpha->value(0.05); // Startwert
+    output_antialias = std::make_unique<Fl_Value_Output>(2000, 730, 60, 40);
+    output_antialias->value(1);
 
     // Mean 1 Output
     output_mean_1 = std::make_unique<Fl_Value_Output>(1130, 530, 35, 25);
@@ -88,12 +90,18 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     a_v_slider->callback(FD_GUI_Manager::static_gui_cb_alpha_slider_callback, ui_pointer_for_callbacks);
 
     // Checkbox for Antialiasing
-    antialiasing_checkbox = std::make_unique<Fl_Check_Button>(440, 530, 120, 20, "Antialiasing");
-    antialiasing_checkbox->value(1); // Startwert (checked or not, 1 means checked)
+    antialiasing_checkbox = std::make_unique<Fl_Check_Button>(440, 530, 120, 20, "Kantenglättung");
+    antialiasing_checkbox->value(1); // Startwert (1 = an, 0 = aus)
     // TODO #Anti Callback einbauen
+    antialiasing_checkbox->callback(FD_GUI_Manager::static_gui_cb_antialiasing_checkbox_callback, ui_pointer_for_callbacks);
 
     graph = std::make_unique<FD_GUI_View_Graph>(5, 80, 1130, 425, "");
     this->end();
+}
+
+void FD_GUI_View_Window_Graph::set_antialias(int checked)
+{
+    output_antialias->value(checked);
 }
 
 void FD_GUI_View_Window_Graph::set_df_value(int df)
@@ -157,17 +165,24 @@ double FD_GUI_View_Window_Graph::get_power()
     return output_power->value();
 }
 
+int FD_GUI_View_Window_Graph::get_antialias()
+{
+    return output_antialias->value();
+}
+
 void FD_GUI_View_Window_Graph::update_graph(const std::vector<std::pair<double, double>> &point_list,
                                             double a_border,
                                             double c_border,
                                             double effect,
                                             double power,
-                                            double beta)
+                                            double beta,
+                                            int antialias)
 {
     graph->set_point_list(point_list,
                           a_border,
                           c_border,
                           effect,
                           power,
-                          beta);
+                          beta,
+                          antialias);
 };

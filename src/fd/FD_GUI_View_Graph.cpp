@@ -16,7 +16,8 @@ void FD_GUI_View_Graph::set_point_list(const std::vector<std::pair<double, doubl
                                        double c_b,
                                        double ef,
                                        double p,
-                                       double b)
+                                       double b,
+                                       int aa)
 {
     point_list = pl;
     a_border = a_b;
@@ -24,6 +25,7 @@ void FD_GUI_View_Graph::set_point_list(const std::vector<std::pair<double, doubl
     effect = ef;
     power = p;
     beta = b;
+    antialias = aa;
     redraw();
 }
 
@@ -103,12 +105,8 @@ void FD_GUI_View_Graph::draw_area(double left_border,
 
 void FD_GUI_View_Graph::draw()
 {
-    // TODO Reihenfolge der Zeichnung noch final so anpassen, dass alles übersichtlich ist
-    // TODO Startwert vom Effekt noch anpassen
-    // TODO Farben der Flächen verbessern
     // Einstellungen
-    // TODO #Anti übergebenen Wert eingeben
-    fl_antialias(1); //* Kann optional zur Kantenglättung verwendet werden (1) verringert allerdings die Performance des Programms
+    fl_antialias(antialias); //* Kann optional zur Kantenglättung verwendet werden (1) verringert allerdings die Performance des Programms
     int graph_line_width = 3;
     int axis_line_width = 2;
 
