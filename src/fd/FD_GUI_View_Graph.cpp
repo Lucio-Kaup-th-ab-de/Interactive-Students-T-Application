@@ -276,7 +276,7 @@ void FD_GUI_View_Graph::draw()
         fl_draw(value_str.c_str(), x_position - 8, y_max_graph_draw_pos + scale_fontsize + 7);
     }
     // x-axis label
-    fl_draw("X-Achse", x_max_graph_draw_pos, y_max_graph_draw_pos + 40);
+    fl_draw("X-Axis", x_max_graph_draw_pos, y_max_graph_draw_pos + 40);
     // y-Scale
     const double y_scale_interval{y_axis_value_interval / 10};
     for (double value = y_axis_min_value; value <= y_axis_max_value + 0.01; value += y_scale_interval)
@@ -289,7 +289,22 @@ void FD_GUI_View_Graph::draw()
         fl_draw(value_str.c_str(), x_min_graph_draw_pos - 24 - scale_fontsize, y_position + 5);
     }
     // y-axis label
-    fl_draw("Y-Achse", x_min_graph_draw_pos - 50, y_min_graph_draw_pos - 20);
+    fl_draw("Y-Axis", x_min_graph_draw_pos - 50, y_min_graph_draw_pos - 20);
+
+    //* Allgemeine Hinweise
+    // Achsenbeschriftung
+    fl_draw("X-Axis: Unit of the paramter being studied",
+            840,
+            18);
+    fl_draw("Y-Axis: Probability of every exact value from the sample",
+            840,
+            36);
+    fl_draw("Note: Please do not use the program to perform sample",
+            840,
+            54);
+    fl_draw("size planning for clinical studies",
+            840,
+            72);
 }
 
 // private

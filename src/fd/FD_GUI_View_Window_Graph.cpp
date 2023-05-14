@@ -7,9 +7,9 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     : Fl_Window(x, y, width, height, title)
 {
     this->begin();
-    graph_label = std::make_unique<Fl_Box>(150, 35, 900, 40, "Interactive Visualization of Student's t-Distributions for Sample Size Planning");
+    graph_label = std::make_unique<Fl_Box>(-25, 20, 900, 40, "Interactive Visualization of Student's t-Distributions for Sample Size Planning");
     graph_label->labelfont(FL_BOLD);
-    graph_label->labelsize(22);
+    graph_label->labelsize(20);
 
     // DF Output
     output_degrees_of_freedom = std::make_unique<Fl_Value_Output>(780, 530, 30, 25);
@@ -90,9 +90,8 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     a_v_slider->callback(FD_GUI_Manager::static_gui_cb_alpha_slider_callback, ui_pointer_for_callbacks);
 
     // Checkbox for Antialiasing
-    antialiasing_checkbox = std::make_unique<Fl_Check_Button>(440, 530, 120, 20, "Kantenglättung");
+    antialiasing_checkbox = std::make_unique<Fl_Check_Button>(440, 530, 120, 20, "Antialiasing");
     antialiasing_checkbox->value(1); // Startwert (1 = an, 0 = aus)
-    // TODO #Anti Callback einbauen
     antialiasing_checkbox->callback(FD_GUI_Manager::static_gui_cb_antialiasing_checkbox_callback, ui_pointer_for_callbacks);
 
     graph = std::make_unique<FD_GUI_View_Graph>(5, 80, 1130, 425, "");
