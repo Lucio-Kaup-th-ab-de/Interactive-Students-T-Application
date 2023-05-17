@@ -106,7 +106,7 @@ void FD_GUI_View_Graph::draw_area(double left_border,
 void FD_GUI_View_Graph::draw()
 {
     // Einstellungen
-    fl_antialias(antialias); //* Kann optional zur Kantenglättung verwendet werden (1) verringert allerdings die Performance des Programms
+    fl_antialias(antialias); //* Kann optional zur Kantenglättung verwendet werden (1), verringert allerdings die Performance des Programms
     int graph_line_width = 3;
     int axis_line_width = 2;
 
@@ -115,7 +115,7 @@ void FD_GUI_View_Graph::draw()
     const int x_left = x(), y_up = y();
     const int x_right = x() + w() - 0, y_down = y() + h() - 1;
     const int x_min_graph_draw_pos = x_left + axis_space;
-    const int x_max_graph_draw_pos = x_right - axis_space; // ! vllt macht const hier noch Probleme
+    const int x_max_graph_draw_pos = x_right - axis_space;
     const int y_min_graph_draw_pos = y_up + axis_space;
     const int y_max_graph_draw_pos = y_down - axis_space;
     const int x_graph_draw_size = x_max_graph_draw_pos - x_min_graph_draw_pos;
@@ -252,7 +252,24 @@ void FD_GUI_View_Graph::draw()
     fl_color(153, 0, 204);
     fl_draw("Beta", x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)) - 40, y_max_graph_draw_pos + 50);
     fl_color(0, 139, 139);
-    fl_draw("Power", x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)) + 10, y_max_graph_draw_pos + 50);
+    fl_draw("Power", x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)) + 11, y_max_graph_draw_pos + 50);
+    // Mittelwerte
+    fl_color(FL_BLACK);
+    double shift_to_left{-0.2}; // On Scale
+    double shift_up{-7};        // Pixel
+    double negative_effect{};   // sorgt dafür, dass nicht beide Angaben übereinander gelegt werden
+    if (effect / 80 <= 0.3)
+    {
+        effect = 0.3 * 80;
+        negative_effect = effect / 80;
+    }
+    fl_draw("\u03BC_1", x_min_graph_draw_pos + ((shift_to_left - negative_effect - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval, y_min_graph_draw_pos + shift_up);
+    fl_draw("\u03BC_2", x_min_graph_draw_pos + ((shift_to_left + effect / 80 - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval, y_min_graph_draw_pos + shift_up);
+    double x_position = x_min_graph_draw_pos + ((0 - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval;
+    double x_2_position = x_min_graph_draw_pos + ((effect / 80 - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval;
+    double max_y = y_max_graph_draw_pos - std::round(y_graph_draw_size * ((((point_list.at(point_list.size() / 2).second) / 80) - y_axis_min_value) / y_axis_value_interval));
+    fl_line(x_position, max_y - 5, x_position, max_y + 5);
+    fl_line(x_2_position, max_y - 5, x_2_position, max_y + 5);
 
     // *draw axes
     fl_line_style(FL_SOLID, axis_line_width);
