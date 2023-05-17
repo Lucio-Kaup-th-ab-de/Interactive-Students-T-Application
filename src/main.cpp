@@ -21,3 +21,6 @@ int main()
 
     application_master_controller.control_application_start();
 }
+// todos falls noch zu viel Zeit ist:
+// TODO Alle Kommentare auf Englisch
+// TODO Weitere Kommentare hinzufügen, die den Code besser erläutern
