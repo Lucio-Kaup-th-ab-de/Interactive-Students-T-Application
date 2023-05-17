@@ -261,8 +261,9 @@ void FD_GUI_View_Graph::draw()
     double effect_under_value{};   // Used for Storing the second effect Value
     double negative_effect{0};     // Ensure that both elements are not overlaid on top of each other
     const int half_line_length{5}; // Specifies half the length of the line in pixels
-    const int cross_size{3};       //
-    const int cross_width{2};      // if 2, the cross is
+    const int cross_size{3};
+    const int cross_line_width{3};
+    const int cross_width{2}; // if 2, the cross is
     if (effect / 80 <= min_effect_difference)
     {
         effect_under_value = min_effect_difference * 80;
@@ -275,7 +276,7 @@ void FD_GUI_View_Graph::draw()
     double x_position = x_min_graph_draw_pos + ((0 - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval;
     double x_2_position = x_min_graph_draw_pos + ((effect / 80 - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval;
     double max_y = y_max_graph_draw_pos - std::round(y_graph_draw_size * (((point_list.at(point_list.size() / 2).second) - y_axis_min_value) / y_axis_value_interval));
-    fl_line_style(FL_SOLID, axis_line_width);
+    fl_line_style(FL_SOLID, cross_line_width);
     fl_color(FL_BLACK);
     fl_line(x_position - cross_size * cross_width, max_y - half_line_length - cross_size, x_position + cross_size * cross_width, max_y + half_line_length + cross_size);
     fl_line(x_position + cross_size * cross_width, max_y - half_line_length - cross_size, x_position - cross_size * cross_width, max_y + half_line_length + cross_size);
