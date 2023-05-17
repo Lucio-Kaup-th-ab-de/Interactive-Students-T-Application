@@ -302,7 +302,7 @@ void FD_GUI_View_Graph::draw()
     fl_draw("Note: Please do not use the program to perform sample",
             840,
             54);
-    fl_draw("size planning for clinical studies",
+    fl_draw("size planning for studies",
             840,
             72);
 }
