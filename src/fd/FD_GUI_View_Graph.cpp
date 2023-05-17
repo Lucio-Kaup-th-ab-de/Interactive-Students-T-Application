@@ -255,29 +255,35 @@ void FD_GUI_View_Graph::draw()
     fl_draw("Power", x_min_graph_draw_pos + std::round(x_graph_draw_size * ((c_border - x_axis_min_value) / x_axis_value_interval)) + 11, y_max_graph_draw_pos + 50);
     // Mittelwerte
     fl_color(FL_BLACK);
-    double shift_to_left{-0.13}; // Shifting on the axis to center the text box over the mean
-    double shift_up{-7};         // Pixel
-    double effect_under_value{}; // Used for Storing the second effect Value
-    double negative_effect{0};   // Ensure that both elements are not overlaid on top of each other
-    double min_effect_difference{0.3};
-    int half_line_length{7}; // Specifies half the length of the line in pixels
+    const double shift_to_left{-0.13}; // Shifting on the axis to center the text box over the mean
+    const double shift_up{-7};         // Pixel
+    const double min_effect_difference{0.3};
+    double effect_under_value{};   // Used for Storing the second effect Value
+    double negative_effect{0};     // Ensure that both elements are not overlaid on top of each other
+    const int half_line_length{5}; // Specifies half the length of the line in pixels
+    const int cross_size{3};       //
+    const int cross_width{2};      // if 2, the cross is
     if (effect / 80 <= min_effect_difference)
     {
         effect_under_value = min_effect_difference * 80;
         negative_effect = effect_under_value / 80;
     }
+    fl_color(255, 0, 0);
     fl_draw("\u03BC_1", x_min_graph_draw_pos + ((shift_to_left - negative_effect - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval, y_min_graph_draw_pos + shift_up); // \u03BC Unicode für "mü"
+    fl_color(0, 0, 255);
     fl_draw("\u03BC_2", x_min_graph_draw_pos + ((shift_to_left + negative_effect + effect / 80 - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval, y_min_graph_draw_pos + shift_up);
     double x_position = x_min_graph_draw_pos + ((0 - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval;
     double x_2_position = x_min_graph_draw_pos + ((effect / 80 - x_axis_min_value) * x_graph_draw_size) / x_axis_value_interval;
     double max_y = y_max_graph_draw_pos - std::round(y_graph_draw_size * (((point_list.at(point_list.size() / 2).second) - y_axis_min_value) / y_axis_value_interval));
     fl_line_style(FL_SOLID, axis_line_width);
-    fl_line(x_position, max_y - half_line_length, x_position, max_y + half_line_length);
-    fl_line(x_2_position, max_y - half_line_length, x_2_position, max_y + half_line_length);
+    fl_color(FL_BLACK);
+    fl_line(x_position - cross_size * cross_width, max_y - half_line_length - cross_size, x_position + cross_size * cross_width, max_y + half_line_length + cross_size);
+    fl_line(x_position + cross_size * cross_width, max_y - half_line_length - cross_size, x_position - cross_size * cross_width, max_y + half_line_length + cross_size);
+    fl_line(x_2_position - cross_size * cross_width, max_y - half_line_length - cross_size, x_2_position + cross_size * cross_width, max_y + half_line_length + cross_size);
+    fl_line(x_2_position + cross_size * cross_width, max_y - half_line_length - cross_size, x_2_position - cross_size * cross_width, max_y + half_line_length + cross_size);
 
     // *draw axes
     // draw Scale
-    fl_color(FL_BLACK);
     // graph y axis
     fl_line(x_min_graph_draw_pos, y_min_graph_draw_pos, x_min_graph_draw_pos, y_max_graph_draw_pos);
     // graph x axis
