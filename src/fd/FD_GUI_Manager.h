@@ -1,5 +1,5 @@
-#ifndef GUI_MANAGER_H
-#define GUI_MANAGER_H
+#ifndef FD_GUI_MANAGER_H
+#define FD_GUI_MANAGER_H
 #include <memory>
 #include <vector>
 #include <string>
@@ -42,4 +42,4 @@ private:
     void gui_cb_alpha_slider_callback(Fl_Widget *w);
     void gui_cb_antialiasing_checkbox_callback(Fl_Widget *w);
 };
-#endif /* GUI_MANAGER_H */
+#endif /* FD_GUI_MANAGER_H */

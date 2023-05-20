@@ -72,7 +72,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     df_v_slider->callback(FD_GUI_Manager::static_gui_cb_df_slider_callback, ui_pointer_for_callbacks);
 
     // Effect Slider
-    e_v_slider = std::make_unique<Fl_Value_Slider>(160, 530, 120, 25, "Effect size");
+    e_v_slider = std::make_unique<Fl_Value_Slider>(160, 530, 120, 25, "Effect Size");
     e_v_slider->type(FL_HOR_NICE_SLIDER); // Slider Typ
     e_v_slider->range(0, 5.0);            // Wertebereich des Sliders
     e_v_slider->step(0.1);                // Schrittweite
