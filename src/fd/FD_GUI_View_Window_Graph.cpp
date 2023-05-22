@@ -18,7 +18,6 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     output_degrees_of_freedom->textsize(18);
     output_degrees_of_freedom->labelsize(18);
 
-    // ! Weitere Outputs; evtl irgendwie anders die Pointer initialisieren
     output_effect = std::make_unique<Fl_Value_Output>(2000, 530, 60, 40);
     output_effect->value(2.5 * 80); // Startwert
     output_alpha = std::make_unique<Fl_Value_Output>(2000, 630, 60, 40);
@@ -28,7 +27,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
 
     // Mean 1 Output
     output_mean_1 = std::make_unique<Fl_Value_Output>(1130, 530, 35, 25);
-    output_mean_1->label("First Average ");
+    output_mean_1->label("First Mean ");
     output_mean_1->labelcolor(fl_rgb_color(255, 0, 0));
     output_mean_1->textcolor(fl_rgb_color(255, 0, 0));
     output_mean_1->value(0);
@@ -37,7 +36,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
 
     // Mean 2 Output
     output_mean_2 = std::make_unique<Fl_Value_Output>(1130, 560, 35, 25);
-    output_mean_2->label("Second Average ");
+    output_mean_2->label("Second Mean ");
     output_mean_2->labelcolor(fl_rgb_color(0, 0, 255));
     output_mean_2->textcolor(fl_rgb_color(0, 0, 255));
     output_mean_2->value(2.5);
@@ -45,7 +44,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     output_mean_2->labelsize(18);
 
     // Beta Niveau Output
-    output_beta = std::make_unique<Fl_Value_Output>(890, 530, 75, 25);
+    output_beta = std::make_unique<Fl_Value_Output>(900, 530, 75, 25);
     output_beta->label("Beta Niveau");
     output_beta->labelcolor(fl_rgb_color(153, 0, 204));
     output_beta->textcolor(fl_rgb_color(153, 0, 204));
@@ -54,7 +53,7 @@ FD_GUI_View_Window_Graph::FD_GUI_View_Window_Graph(int x, int y, int width, int 
     output_beta->labelsize(18);
 
     // Power Output
-    output_power = std::make_unique<Fl_Value_Output>(890, 560, 75, 25);
+    output_power = std::make_unique<Fl_Value_Output>(900, 560, 75, 25);
     output_power->label("Power");
     output_power->labelcolor(fl_rgb_color(0, 139, 139));
     output_power->textcolor(fl_rgb_color(0, 139, 139));
