@@ -263,7 +263,7 @@ void FD_GUI_View_Graph::draw()
     const int half_line_length{5}; // Specifies half the length of the line in pixels
     const int cross_size{3};
     const int cross_line_width{3};
-    const int cross_width{2}; // if 2, the cross is
+    const int cross_width{2}; // Specifies the width of the cross in pixels
     if (effect / 80 <= min_effect_difference)
     {
         effect_under_value = min_effect_difference * 80;

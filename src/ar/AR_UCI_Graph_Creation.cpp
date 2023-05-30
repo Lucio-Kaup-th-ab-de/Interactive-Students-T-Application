@@ -33,7 +33,7 @@ void AR_UCI_Graph_Creation::create_graph(int df, double alpha, double input_effe
   for (double x = x_start; x <= x_end; x += interval)
   {
     double y = stat_util.students_t_pdf(x, df);
-    beta += y * interval; // Rechteecke Approximieren die Fläche unter dem Graph
+    beta += y * interval; // Rechtecke Approximieren die Fläche unter dem Graph
   }
 
   // Runden auf 5 Nachkommastellen
